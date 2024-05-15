@@ -1,0 +1,97 @@
+/*-------------------------*/
+/*         typography      */
+/*-------------------------*/
+@font-face {
+    font-family: 'yekan-reg';
+    src: url("../fonts/YekanBakhFaNum-Regular.woff2");
+}
+
+
+
+.yekan-regular {
+    font-family: yekan-reg !important;
+}
+
+
+
+
+/*-------------------------*/
+/*         general         */
+/*-------------------------*/
+body {
+    margin: 0;
+}
+
+
+
+.main-cantainer {
+    width: 100%;
+    min-height: 100vh;
+}
+
+
+.clrone {
+    background-color: #4FE8E3 !important;
+}
+.clrtwo {
+    background-color: #1B95A2;
+}
+.clrthree {
+    background-color: #737375;
+}
+
+.clrfour {
+    background-color: #E1C886;
+}
+.clrfive {
+    background-color: #AB9D7C;
+}
+
+
+
+
+
+/*-------------------------*/
+/*         general         */
+/*-------------------------*/
+.underline {
+    &::after {
+        content: "";
+        border-bottom: solid 0.1618rem #1b5da5;
+
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform 0.4s;
+    }
+
+    &:hover {
+        &::after {
+            transform-origin: center;
+            transform: scaleX(1);
+        }
+    }
+
+    @keyframes underline {
+        from {
+            transform: scaleX(0);
+        }
+        to {
+            transform: scaleX(1);
+        }
+    }
+}
+
+
+
+/*-------------------------*/
+/*   margins and padding   */
+/*-------------------------*/
+
+.margins {
+    padding-right: 10rem;
+    padding-left: 10rem;
+}

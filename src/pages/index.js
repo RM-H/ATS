@@ -1,0 +1,1 @@
+export {default as Persnalinfo} from './Personalinfo.jsx'
