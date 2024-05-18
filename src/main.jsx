@@ -5,7 +5,7 @@ import Mainlayout from './Layouts/Mainlayout.jsx'
 import {createBrowserRouter,RouterProvider} from "react-router-dom";
 import { Provider } from 'react-redux'
 import {store} from "./store/store.js";
-import {Persnalinfo} from './pages/index.js'
+import {Persnalinfo,Education} from './pages/index.js'
 const router = createBrowserRouter([
     {
         path: "/",
@@ -17,6 +17,11 @@ const router = createBrowserRouter([
             {
                 path:'/' ,
                 element: <Persnalinfo/>
+            } ,
+            {
+                path:'/education' ,
+                element:<Education/>
+
             }
 
 
