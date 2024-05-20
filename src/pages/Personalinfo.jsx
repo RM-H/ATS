@@ -1,5 +1,5 @@
 import Grid from '@mui/material/Unstable_Grid2'
-import {ErrorMessage, Field, Form, Formik, useFormik} from "formik";
+import { useFormik} from "formik";
 import {
     Button,
     FormControl,
@@ -12,19 +12,27 @@ import {
     Stepper,
     TextField
 } from "@mui/material";
-import {AccountCircle} from "@mui/icons-material";
+
 import * as yup from "yup";
-import DatePicker, {Calendar} from "react-multi-date-picker";
+import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import {useState} from "react";
+import { useDispatch} from 'react-redux'
+import {setstep} from '../slices/userSlice.js'
+import {useNavigate} from 'react-router-dom'
+
 
 const Personalinfo = () => {
 
+    const dispatch = useDispatch()
+    const nav = useNavigate()
 
     // birthday
     const [date, setDate] = useState(new Date().toLocaleDateString('fa-IR'))
     const handlesubmit = (val, d) => {
+        dispatch(setstep(1))
+        nav('/education')
        console.table(val)
         console.log(d.format())
     }
@@ -56,7 +64,7 @@ const Personalinfo = () => {
             address: '',
             tel: ''
         },
-        validationSchema: validationSchema,
+        // validationSchema: validationSchema,
         onSubmit: (values) => {
             handlesubmit(values, date)
         },

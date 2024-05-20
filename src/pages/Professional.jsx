@@ -10,10 +10,7 @@ import {
     TextField,
     Typography
 } from "@mui/material";
-import {ArrowDownward} from "@mui/icons-material";
-import DatePicker from "react-multi-date-picker";
-import persian from "react-date-object/calendars/persian";
-import persian_fa from "react-date-object/locales/persian_fa";
+
 import {useState} from "react";
 import {Workitem} from '../components/index.js'
 
@@ -91,8 +88,7 @@ const Professional = () => {
         console.log(val)
 
         let copy = [...fields, val.title];
-        console.log(copy)
-        setFileds(false)
+
         setFileds(copy)
 
 
@@ -113,7 +109,7 @@ const Professional = () => {
 
 
                 return (
-                   <Workitem item={item} key={index} />
+                   <Workitem item={item} key={index} fields={fields} setfields={setFileds} />
 
                 )
             }

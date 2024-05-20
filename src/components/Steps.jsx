@@ -1,17 +1,27 @@
 import Grid from '@mui/material/Unstable_Grid2'
 import {Typography, FormControlLabel, FormGroup, LinearProgress , IconButton} from '@mui/material'
 import {SchoolOutlined , School , AccountBox , PortraitOutlined , Work , WorkOutline , Call , CallOutlined , Fingerprint } from '@mui/icons-material'
+
+import {useSelector} from 'react-redux'
+import {stepselector} from '../slices/userSlice.js'
+
+import {useNavigate} from 'react-router-dom'
 const Steps = () => {
+
+    const nav = useNavigate()
+    const step = useSelector(stepselector)
+
   return(
 
       <>
           <Grid container className='margins' sx={{pt:12}}>
+
               <Grid xs={9} >
-                  <LinearProgress className='shadowone' variant='determinate' color='success' value={100} sx={{transform:'rotateY(180deg)' , '&.MuiLinearProgress-root':{
+                  <LinearProgress className='shadowone' variant='determinate' color='success' value={step*25} sx={{transform:'rotateY(180deg)' , '&.MuiLinearProgress-root':{
                       height:'0.9rem' ,
                           backgroundColor: 'rgba(115,115,117,0.44)'
                       } , '& .MuiLinearProgress-bar ':{
-                          background: 'linear-gradient(90deg, rgba(79,232,227,1) 13%, rgba(27,149,162,1) 41%, rgba(225,200,134,1) 71%);'
+                          background: '#4FE8E3'
                       }}} />
 
 
@@ -25,12 +35,12 @@ const Steps = () => {
               <Grid xs={3} >
 
                   <FormGroup  sx={{flexDirection:'row' , justifyContent:'space-between'}}>
-                      <FormControlLabel disabled  defaultChecked   control={<IconButton color='success'>
+                      <FormControlLabel disabled={step <0}  defaultChecked   control={<IconButton onClick={()=>nav('/')} color='success'>
                       <Fingerprint/>
                       </IconButton> } label={<span className='yekan-regular'>اطلاعات فردی </span>} />
 
 
-                      <FormControlLabel disabled defaultChecked   control={<IconButton color='success'>
+                      <FormControlLabel disabled={step <1} defaultChecked   control={<IconButton color='success'>
                           <School/>
                       </IconButton> } label={<span className='yekan-regular'>اطلاعات تحصیلی </span>} />
 
