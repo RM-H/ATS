@@ -5,7 +5,7 @@ import Mainlayout from './Layouts/Mainlayout.jsx'
 import {createBrowserRouter,RouterProvider} from "react-router-dom";
 import { Provider } from 'react-redux'
 import {store} from "./store/store.js";
-import {Persnalinfo,Education,Professional} from './pages/index.js'
+import {Persnalinfo,Education,Professional,Department,Login} from './pages/index.js'
 const router = createBrowserRouter([
     {
         path: "/",
@@ -16,6 +16,10 @@ const router = createBrowserRouter([
         children:[
             {
                 path:'/' ,
+                element: <Department/>
+            } ,
+            {
+                path:'/personal' ,
                 element: <Persnalinfo/>
             } ,
             {
@@ -34,6 +38,10 @@ const router = createBrowserRouter([
 
         ]
     },
+    {
+        path:'/login' ,
+        element: <Login/>
+    }
 ]);
 
 
@@ -51,6 +59,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <RouterProvider router={router}>
           <ThemeProvider theme={theme}>
               <Mainlayout/>
+
           </ThemeProvider>
 
       </RouterProvider>

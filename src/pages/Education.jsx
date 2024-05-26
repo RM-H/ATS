@@ -16,24 +16,29 @@ import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import {useState} from "react";
 import {ArrowDownward} from '@mui/icons-material'
-
+import {setstep} from "../slices/userSlice.js";
+import {useDispatch} from "react-redux";
+import {useNavigate} from "react-router-dom";
 
 
 const Education = () => {
-
+    const dispatch = useDispatch()
+    const nav = useNavigate()
 
     // controlling the on going education
 
 
-    const [kardani,setkardani] = useState(false)
-    const [karshenasi,setkarshenasi] = useState(false)
-    const [arshad,setarshad] = useState(false)
-    const [phd,setphd] = useState(false)
+    const [kardani, setkardani] = useState(false)
+    const [karshenasi, setkarshenasi] = useState(false)
+    const [arshad, setarshad] = useState(false)
+    const [phd, setphd] = useState(false)
 
     const [date, setDate] = useState(new Date().toLocaleDateString('fa-IR'))
     const handlesubmit = (val, d) => {
         console.table(val)
-        console.log(d.format())
+        // console.log(d.format())
+        dispatch(setstep(3))
+        nav('/professional')
     }
     const validationSchema = yup.object({
 
@@ -63,666 +68,651 @@ const Education = () => {
             address: '',
             tel: ''
         },
-        validationSchema: validationSchema,
+        // validationSchema: validationSchema,
         onSubmit: (values) => {
             handlesubmit(values, date)
         },
     });
-  return(
-      <>
-          <Grid container className='margins'>
-              <Grid xs={12}>
+    return (
+        <>
+            <Grid container className='margins' sx={{'& .MuiInputBase-root': {fontFamily: 'yekan-reg'}}}>
+                <Grid xs={12}>
 
 
-                  <form onSubmit={formik.handleSubmit}>
-                      <Grid container columnSpacing={3} rowSpacing={5}>
-                          <Grid xs={12}>
-                              <Accordion>
-                                  <AccordionSummary
-                                      expandIcon={<ArrowDownward />}
-                                      aria-controls="panel1-content"
-                                      id="panel1-header"
-                                  >
-                                     <Typography variant='h5' className='yekan-regular'>
-                                         مقطع کاردانی
-                                     </Typography>
-                                  </AccordionSummary>
-                                  <AccordionDetails>
-                                      <Grid container spacing={4}>
-                                          <Grid xs={4}>
-                                              <FormControl className='w100' variant="outlined">
+                    <form onSubmit={formik.handleSubmit}>
+                        <Grid container columnSpacing={3} rowSpacing={5}>
+                            <Grid xs={12}>
+                                <Accordion>
+                                    <AccordionSummary
+                                        expandIcon={<ArrowDownward/>}
+                                        aria-controls="panel1-content"
+                                        id="panel1-header"
+                                    >
+                                        <Typography variant='h5' className='yekan-regular'>
+                                            مقطع کاردانی
+                                        </Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <Grid container spacing={4}>
+                                            <Grid xs={4}>
+                                                <FormControl className='w100' variant="outlined">
 
-                                                  <span className='yekan-regular'> رشته  :  </span>
-                                                  <TextField
-                                                      id="firstName"
-                                                      name='firstName'
+                                                    <span className='yekan-regular'> رشته  :  </span>
+                                                    <TextField
+                                                        id="firstName"
+                                                        name='firstName'
 
-                                                      value={formik.values.firstName}
-                                                      onChange={formik.handleChange}
-                                                      onBlur={formik.handleBlur}
+                                                        value={formik.values.firstName}
+                                                        onChange={formik.handleChange}
+                                                        onBlur={formik.handleBlur}
 
-                                                      error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+                                                        error={formik.touched.firstName && Boolean(formik.errors.firstName)}
 
 
-                                                      helperText={formik.touched.firstName && formik.errors.firstName}
+                                                        helperText={formik.touched.firstName && formik.errors.firstName}
 
-                                                  />
+                                                    />
 
 
+                                                </FormControl>
+                                            </Grid>
 
 
-                                              </FormControl>
-                                          </Grid>
+                                            <Grid xs={4}>
+                                                <FormControl className='w100' variant="outlined">
 
+                                                    <span className='yekan-regular'> گرایش  :  </span>
+                                                    <TextField
+                                                        id="firstName"
+                                                        name='firstName'
 
-                                          <Grid xs={4}>
-                                              <FormControl className='w100' variant="outlined">
+                                                        value={formik.values.firstName}
+                                                        onChange={formik.handleChange}
+                                                        onBlur={formik.handleBlur}
 
-                                                  <span className='yekan-regular'> گرایش  :  </span>
-                                                  <TextField
-                                                      id="firstName"
-                                                      name='firstName'
+                                                        error={formik.touched.firstName && Boolean(formik.errors.firstName)}
 
-                                                      value={formik.values.firstName}
-                                                      onChange={formik.handleChange}
-                                                      onBlur={formik.handleBlur}
 
-                                                      error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+                                                        helperText={formik.touched.firstName && formik.errors.firstName}
 
+                                                    />
 
-                                                      helperText={formik.touched.firstName && formik.errors.firstName}
 
-                                                  />
+                                                </FormControl>
+                                            </Grid>
 
+                                            <Grid xs={4}>
+                                                <FormControl className='w100' variant="outlined">
 
+                                                    <span className='yekan-regular'> دانشگاه  :  </span>
+                                                    <TextField
+                                                        id="firstName"
+                                                        name='firstName'
 
+                                                        value={formik.values.firstName}
+                                                        onChange={formik.handleChange}
+                                                        onBlur={formik.handleBlur}
 
-                                              </FormControl>
-                                          </Grid>
+                                                        error={formik.touched.firstName && Boolean(formik.errors.firstName)}
 
-                                          <Grid xs={4}>
-                                              <FormControl className='w100' variant="outlined">
 
-                                                  <span className='yekan-regular'> دانشگاه  :  </span>
-                                                  <TextField
-                                                      id="firstName"
-                                                      name='firstName'
+                                                        helperText={formik.touched.firstName && formik.errors.firstName}
 
-                                                      value={formik.values.firstName}
-                                                      onChange={formik.handleChange}
-                                                      onBlur={formik.handleBlur}
+                                                    />
 
-                                                      error={formik.touched.firstName && Boolean(formik.errors.firstName)}
 
+                                                </FormControl>
+                                            </Grid>
 
-                                                      helperText={formik.touched.firstName && formik.errors.firstName}
+                                            <Grid xs={4} sx={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'space-around'
+                                            }}>
+                                                <span className='yekan-regular'> تاریخ شروع :  </span>
 
-                                                  />
 
+                                                <DatePicker style={{
+                                                    fontFamily: 'yekan-reg',
+                                                    fontSize: '1rem',
+                                                    padding: '1rem',
+                                                    textAlign: 'center'
+                                                }} className='yekan-regular' onChange={setDate} calendar={persian}
+                                                            locale={persian_fa}
+                                                            value={date}/>
+                                            </Grid>
 
+                                            <Grid xs={4} sx={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'space-around'
+                                            }}>
+                                                <span className='yekan-regular'> تاریخ پایان :  </span>
 
 
-                                              </FormControl>
-                                          </Grid>
+                                                <DatePicker disabled={kardani} style={{
+                                                    fontFamily: 'yekan-reg',
+                                                    fontSize: '1rem',
+                                                    padding: '1rem',
+                                                    textAlign: 'center'
+                                                }} className='yekan-regular' onChange={setDate} calendar={persian}
+                                                            locale={persian_fa}
+                                                />
+                                                <FormControlLabel
+                                                    control={<Checkbox onChange={() => setkardani((prev) => !prev)}/>}
+                                                    label={<span className='yekan-regular'>مشغول به تحصیل </span>}/>
+                                            </Grid>
 
-                                          <Grid xs={4} sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
-                                              <span className='yekan-regular'> تاریخ شروع :  </span>
+                                            <Grid xs={4}>
+                                                <FormControl className='w100' variant="outlined">
 
+                                                    <span className='yekan-regular'> معدل  :  </span>
+                                                    <TextField
+                                                        id="firstName"
+                                                        name='firstName'
+                                                        disabled={kardani}
 
-                                              <DatePicker style={{
-                                                  fontFamily: 'yekan-reg',
-                                                  fontSize: '1rem',
-                                                  padding: '1rem',
-                                                  textAlign: 'center'
-                                              }} className='yekan-regular' onChange={setDate} calendar={persian}
-                                                          locale={persian_fa}
-                                                          value={date}/>
-                                          </Grid>
+                                                        value={formik.values.firstName}
+                                                        onChange={formik.handleChange}
+                                                        onBlur={formik.handleBlur}
 
-                                          <Grid xs={4} sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
-                                              <span className='yekan-regular'> تاریخ پایان :  </span>
+                                                        error={formik.touched.firstName && Boolean(formik.errors.firstName)}
 
 
-                                              <DatePicker disabled={kardani} style={{
-                                                  fontFamily: 'yekan-reg',
-                                                  fontSize: '1rem',
-                                                  padding: '1rem',
-                                                  textAlign: 'center'
-                                              }} className='yekan-regular' onChange={setDate} calendar={persian}
-                                                          locale={persian_fa}
-                                                         />
-                                              <FormControlLabel control={<Checkbox onChange={()=>setkardani((prev)=>!prev)}  />} label={<span className='yekan-regular'>مشغول به تحصیل </span>} />
-                                          </Grid>
+                                                        helperText={formik.touched.firstName && formik.errors.firstName}
 
-                                          <Grid xs={4}>
-                                              <FormControl className='w100' variant="outlined">
+                                                    />
 
-                                                  <span className='yekan-regular'> معدل  :  </span>
-                                                  <TextField
-                                                      id="firstName"
-                                                      name='firstName'
-                                                      disabled={kardani}
 
-                                                      value={formik.values.firstName}
-                                                      onChange={formik.handleChange}
-                                                      onBlur={formik.handleBlur}
+                                                </FormControl>
+                                            </Grid>
 
-                                                      error={formik.touched.firstName && Boolean(formik.errors.firstName)}
 
+                                        </Grid>
 
-                                                      helperText={formik.touched.firstName && formik.errors.firstName}
 
-                                                  />
+                                    </AccordionDetails>
+                                </Accordion>
+                            </Grid>
 
+                            <Grid xs={12}>
+                                <Accordion>
+                                    <AccordionSummary
+                                        expandIcon={<ArrowDownward/>}
+                                        aria-controls="panel1-content"
+                                        id="panel1-header"
+                                    >
+                                        <Typography variant='h5' className='yekan-regular'>
+                                            مقطع کارشناسی
+                                        </Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <Grid container spacing={4}>
+                                            <Grid xs={4}>
+                                                <FormControl className='w100' variant="outlined">
 
+                                                    <span className='yekan-regular'> رشته  :  </span>
+                                                    <TextField
+                                                        id="firstName"
+                                                        name='firstName'
 
+                                                        value={formik.values.firstName}
+                                                        onChange={formik.handleChange}
+                                                        onBlur={formik.handleBlur}
 
-                                              </FormControl>
-                                          </Grid>
+                                                        error={formik.touched.firstName && Boolean(formik.errors.firstName)}
 
 
+                                                        helperText={formik.touched.firstName && formik.errors.firstName}
 
-                                      </Grid>
+                                                    />
 
 
-                                  </AccordionDetails>
-                              </Accordion>
-                          </Grid>
+                                                </FormControl>
+                                            </Grid>
 
-                          <Grid xs={12}>
-                              <Accordion>
-                                  <AccordionSummary
-                                      expandIcon={<ArrowDownward />}
-                                      aria-controls="panel1-content"
-                                      id="panel1-header"
-                                  >
-                                      <Typography variant='h5' className='yekan-regular'>
-                                          مقطع کارشناسی
-                                      </Typography>
-                                  </AccordionSummary>
-                                  <AccordionDetails>
-                                      <Grid container spacing={4}>
-                                          <Grid xs={4}>
-                                              <FormControl className='w100' variant="outlined">
 
-                                                  <span className='yekan-regular'> رشته  :  </span>
-                                                  <TextField
-                                                      id="firstName"
-                                                      name='firstName'
+                                            <Grid xs={4}>
+                                                <FormControl className='w100' variant="outlined">
 
-                                                      value={formik.values.firstName}
-                                                      onChange={formik.handleChange}
-                                                      onBlur={formik.handleBlur}
+                                                    <span className='yekan-regular'> گرایش  :  </span>
+                                                    <TextField
+                                                        id="firstName"
+                                                        name='firstName'
 
-                                                      error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+                                                        value={formik.values.firstName}
+                                                        onChange={formik.handleChange}
+                                                        onBlur={formik.handleBlur}
 
+                                                        error={formik.touched.firstName && Boolean(formik.errors.firstName)}
 
-                                                      helperText={formik.touched.firstName && formik.errors.firstName}
 
-                                                  />
+                                                        helperText={formik.touched.firstName && formik.errors.firstName}
 
+                                                    />
 
 
+                                                </FormControl>
+                                            </Grid>
 
-                                              </FormControl>
-                                          </Grid>
+                                            <Grid xs={4}>
+                                                <FormControl className='w100' variant="outlined">
 
+                                                    <span className='yekan-regular'> دانشگاه  :  </span>
+                                                    <TextField
+                                                        id="firstName"
+                                                        name='firstName'
 
-                                          <Grid xs={4}>
-                                              <FormControl className='w100' variant="outlined">
+                                                        value={formik.values.firstName}
+                                                        onChange={formik.handleChange}
+                                                        onBlur={formik.handleBlur}
 
-                                                  <span className='yekan-regular'> گرایش  :  </span>
-                                                  <TextField
-                                                      id="firstName"
-                                                      name='firstName'
+                                                        error={formik.touched.firstName && Boolean(formik.errors.firstName)}
 
-                                                      value={formik.values.firstName}
-                                                      onChange={formik.handleChange}
-                                                      onBlur={formik.handleBlur}
 
-                                                      error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+                                                        helperText={formik.touched.firstName && formik.errors.firstName}
 
+                                                    />
 
-                                                      helperText={formik.touched.firstName && formik.errors.firstName}
 
-                                                  />
+                                                </FormControl>
+                                            </Grid>
 
+                                            <Grid xs={4} sx={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'space-around'
+                                            }}>
+                                                <span className='yekan-regular'> تاریخ شروع :  </span>
 
 
+                                                <DatePicker style={{
+                                                    fontFamily: 'yekan-reg',
+                                                    fontSize: '1rem',
+                                                    padding: '1rem',
+                                                    textAlign: 'center'
+                                                }} className='yekan-regular' onChange={setDate} calendar={persian}
+                                                            locale={persian_fa}
+                                                            value={date}/>
+                                            </Grid>
 
-                                              </FormControl>
-                                          </Grid>
+                                            <Grid xs={4} sx={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'space-around'
+                                            }}>
+                                                <span className='yekan-regular'> تاریخ پایان :  </span>
 
-                                          <Grid xs={4}>
-                                              <FormControl className='w100' variant="outlined">
 
-                                                  <span className='yekan-regular'> دانشگاه  :  </span>
-                                                  <TextField
-                                                      id="firstName"
-                                                      name='firstName'
+                                                <DatePicker disabled={karshenasi} style={{
+                                                    fontFamily: 'yekan-reg',
+                                                    fontSize: '1rem',
+                                                    padding: '1rem',
+                                                    textAlign: 'center'
+                                                }} className='yekan-regular' onChange={setDate} calendar={persian}
+                                                            locale={persian_fa}
+                                                />
+                                                <FormControlLabel control={<Checkbox
+                                                    onChange={() => setkarshenasi((prev) => !prev)}/>} label={<span
+                                                    className='yekan-regular'>مشغول به تحصیل </span>}/>
+                                            </Grid>
 
-                                                      value={formik.values.firstName}
-                                                      onChange={formik.handleChange}
-                                                      onBlur={formik.handleBlur}
+                                            <Grid xs={4}>
+                                                <FormControl className='w100' variant="outlined">
 
-                                                      error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+                                                    <span className='yekan-regular'> معدل  :  </span>
+                                                    <TextField
+                                                        id="firstName"
+                                                        name='firstName'
+                                                        disabled={karshenasi}
 
+                                                        value={formik.values.firstName}
+                                                        onChange={formik.handleChange}
+                                                        onBlur={formik.handleBlur}
 
-                                                      helperText={formik.touched.firstName && formik.errors.firstName}
+                                                        error={formik.touched.firstName && Boolean(formik.errors.firstName)}
 
-                                                  />
 
+                                                        helperText={formik.touched.firstName && formik.errors.firstName}
 
+                                                    />
 
 
-                                              </FormControl>
-                                          </Grid>
+                                                </FormControl>
+                                            </Grid>
 
-                                          <Grid xs={4} sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
-                                              <span className='yekan-regular'> تاریخ شروع :  </span>
 
+                                        </Grid>
 
-                                              <DatePicker style={{
-                                                  fontFamily: 'yekan-reg',
-                                                  fontSize: '1rem',
-                                                  padding: '1rem',
-                                                  textAlign: 'center'
-                                              }} className='yekan-regular' onChange={setDate} calendar={persian}
-                                                          locale={persian_fa}
-                                                          value={date}/>
-                                          </Grid>
 
-                                          <Grid xs={4} sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
-                                              <span className='yekan-regular'> تاریخ پایان :  </span>
+                                    </AccordionDetails>
+                                </Accordion>
+                            </Grid>
 
+                            <Grid xs={12}>
+                                <Accordion>
+                                    <AccordionSummary
+                                        expandIcon={<ArrowDownward/>}
+                                        aria-controls="panel1-content"
+                                        id="panel1-header"
+                                    >
+                                        <Typography variant='h5' className='yekan-regular'>
+                                            مقطع کارشناسی ارشد
+                                        </Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <Grid container spacing={4}>
+                                            <Grid xs={4}>
+                                                <FormControl className='w100' variant="outlined">
 
-                                              <DatePicker disabled={karshenasi} style={{
-                                                  fontFamily: 'yekan-reg',
-                                                  fontSize: '1rem',
-                                                  padding: '1rem',
-                                                  textAlign: 'center'
-                                              }} className='yekan-regular' onChange={setDate} calendar={persian}
-                                                          locale={persian_fa}
-                                              />
-                                              <FormControlLabel control={<Checkbox onChange={()=>setkarshenasi((prev)=>!prev)}  />} label={<span className='yekan-regular'>مشغول به تحصیل </span>} />
-                                          </Grid>
+                                                    <span className='yekan-regular'> رشته  :  </span>
+                                                    <TextField
+                                                        id="firstName"
+                                                        name='firstName'
 
-                                          <Grid xs={4}>
-                                              <FormControl className='w100' variant="outlined">
+                                                        value={formik.values.firstName}
+                                                        onChange={formik.handleChange}
+                                                        onBlur={formik.handleBlur}
 
-                                                  <span className='yekan-regular'> معدل  :  </span>
-                                                  <TextField
-                                                      id="firstName"
-                                                      name='firstName'
-                                                      disabled={karshenasi}
+                                                        error={formik.touched.firstName && Boolean(formik.errors.firstName)}
 
-                                                      value={formik.values.firstName}
-                                                      onChange={formik.handleChange}
-                                                      onBlur={formik.handleBlur}
 
-                                                      error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+                                                        helperText={formik.touched.firstName && formik.errors.firstName}
 
+                                                    />
 
-                                                      helperText={formik.touched.firstName && formik.errors.firstName}
 
-                                                  />
+                                                </FormControl>
+                                            </Grid>
 
 
+                                            <Grid xs={4}>
+                                                <FormControl className='w100' variant="outlined">
 
+                                                    <span className='yekan-regular'> گرایش  :  </span>
+                                                    <TextField
+                                                        id="firstName"
+                                                        name='firstName'
 
-                                              </FormControl>
-                                          </Grid>
+                                                        value={formik.values.firstName}
+                                                        onChange={formik.handleChange}
+                                                        onBlur={formik.handleBlur}
 
+                                                        error={formik.touched.firstName && Boolean(formik.errors.firstName)}
 
 
-                                      </Grid>
+                                                        helperText={formik.touched.firstName && formik.errors.firstName}
 
+                                                    />
 
-                                  </AccordionDetails>
-                              </Accordion>
-                          </Grid>
 
-                          <Grid xs={12}>
-                              <Accordion>
-                                  <AccordionSummary
-                                      expandIcon={<ArrowDownward />}
-                                      aria-controls="panel1-content"
-                                      id="panel1-header"
-                                  >
-                                      <Typography variant='h5' className='yekan-regular'>
-                                          مقطع کارشناسی ارشد
-                                      </Typography>
-                                  </AccordionSummary>
-                                  <AccordionDetails>
-                                      <Grid container spacing={4}>
-                                          <Grid xs={4}>
-                                              <FormControl className='w100' variant="outlined">
+                                                </FormControl>
+                                            </Grid>
 
-                                                  <span className='yekan-regular'> رشته  :  </span>
-                                                  <TextField
-                                                      id="firstName"
-                                                      name='firstName'
+                                            <Grid xs={4}>
+                                                <FormControl className='w100' variant="outlined">
 
-                                                      value={formik.values.firstName}
-                                                      onChange={formik.handleChange}
-                                                      onBlur={formik.handleBlur}
+                                                    <span className='yekan-regular'> دانشگاه  :  </span>
+                                                    <TextField
+                                                        id="firstName"
+                                                        name='firstName'
 
-                                                      error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+                                                        value={formik.values.firstName}
+                                                        onChange={formik.handleChange}
+                                                        onBlur={formik.handleBlur}
 
+                                                        error={formik.touched.firstName && Boolean(formik.errors.firstName)}
 
-                                                      helperText={formik.touched.firstName && formik.errors.firstName}
 
-                                                  />
+                                                        helperText={formik.touched.firstName && formik.errors.firstName}
 
+                                                    />
 
 
+                                                </FormControl>
+                                            </Grid>
 
-                                              </FormControl>
-                                          </Grid>
+                                            <Grid xs={4} sx={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'space-around'
+                                            }}>
+                                                <span className='yekan-regular'> تاریخ شروع :  </span>
 
 
-                                          <Grid xs={4}>
-                                              <FormControl className='w100' variant="outlined">
+                                                <DatePicker style={{
+                                                    fontFamily: 'yekan-reg',
+                                                    fontSize: '1rem',
+                                                    padding: '1rem',
+                                                    textAlign: 'center'
+                                                }} className='yekan-regular' onChange={setDate} calendar={persian}
+                                                            locale={persian_fa}
+                                                            value={date}/>
+                                            </Grid>
 
-                                                  <span className='yekan-regular'> گرایش  :  </span>
-                                                  <TextField
-                                                      id="firstName"
-                                                      name='firstName'
+                                            <Grid xs={4} sx={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'space-around'
+                                            }}>
+                                                <span className='yekan-regular'> تاریخ پایان :  </span>
 
-                                                      value={formik.values.firstName}
-                                                      onChange={formik.handleChange}
-                                                      onBlur={formik.handleBlur}
 
-                                                      error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+                                                <DatePicker disabled={arshad} style={{
+                                                    fontFamily: 'yekan-reg',
+                                                    fontSize: '1rem',
+                                                    padding: '1rem',
+                                                    textAlign: 'center'
+                                                }} className='yekan-regular' onChange={setDate} calendar={persian}
+                                                            locale={persian_fa}
+                                                />
+                                                <FormControlLabel
+                                                    control={<Checkbox onChange={() => setarshad((prev) => !prev)}/>}
+                                                    label={<span className='yekan-regular'>مشغول به تحصیل </span>}/>
+                                            </Grid>
 
+                                            <Grid xs={4}>
+                                                <FormControl className='w100' variant="outlined">
 
-                                                      helperText={formik.touched.firstName && formik.errors.firstName}
+                                                    <span className='yekan-regular'> معدل  :  </span>
+                                                    <TextField
+                                                        id="firstName"
+                                                        name='firstName'
+                                                        disabled={arshad}
 
-                                                  />
+                                                        value={formik.values.firstName}
+                                                        onChange={formik.handleChange}
+                                                        onBlur={formik.handleBlur}
 
+                                                        error={formik.touched.firstName && Boolean(formik.errors.firstName)}
 
 
+                                                        helperText={formik.touched.firstName && formik.errors.firstName}
 
-                                              </FormControl>
-                                          </Grid>
+                                                    />
 
-                                          <Grid xs={4}>
-                                              <FormControl className='w100' variant="outlined">
 
-                                                  <span className='yekan-regular'> دانشگاه  :  </span>
-                                                  <TextField
-                                                      id="firstName"
-                                                      name='firstName'
+                                                </FormControl>
+                                            </Grid>
 
-                                                      value={formik.values.firstName}
-                                                      onChange={formik.handleChange}
-                                                      onBlur={formik.handleBlur}
 
-                                                      error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+                                        </Grid>
 
 
-                                                      helperText={formik.touched.firstName && formik.errors.firstName}
+                                    </AccordionDetails>
+                                </Accordion>
+                            </Grid>
 
-                                                  />
+                            <Grid xs={12}>
+                                <Accordion>
+                                    <AccordionSummary
+                                        expandIcon={<ArrowDownward/>}
+                                        aria-controls="panel1-content"
+                                        id="panel1-header"
+                                    >
+                                        <Typography variant='h5' className='yekan-regular'>
+                                            مقطع دکتری
+                                        </Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <Grid container spacing={4}>
+                                            <Grid xs={4}>
+                                                <FormControl className='w100' variant="outlined">
 
+                                                    <span className='yekan-regular'> رشته  :  </span>
+                                                    <TextField
+                                                        id="firstName"
+                                                        name='firstName'
 
+                                                        value={formik.values.firstName}
+                                                        onChange={formik.handleChange}
+                                                        onBlur={formik.handleBlur}
 
+                                                        error={formik.touched.firstName && Boolean(formik.errors.firstName)}
 
-                                              </FormControl>
-                                          </Grid>
 
-                                          <Grid xs={4} sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
-                                              <span className='yekan-regular'> تاریخ شروع :  </span>
+                                                        helperText={formik.touched.firstName && formik.errors.firstName}
 
+                                                    />
 
-                                              <DatePicker style={{
-                                                  fontFamily: 'yekan-reg',
-                                                  fontSize: '1rem',
-                                                  padding: '1rem',
-                                                  textAlign: 'center'
-                                              }} className='yekan-regular' onChange={setDate} calendar={persian}
-                                                          locale={persian_fa}
-                                                          value={date}/>
-                                          </Grid>
 
-                                          <Grid xs={4} sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
-                                              <span className='yekan-regular'> تاریخ پایان :  </span>
+                                                </FormControl>
+                                            </Grid>
 
 
-                                              <DatePicker disabled={arshad} style={{
-                                                  fontFamily: 'yekan-reg',
-                                                  fontSize: '1rem',
-                                                  padding: '1rem',
-                                                  textAlign: 'center'
-                                              }} className='yekan-regular' onChange={setDate} calendar={persian}
-                                                          locale={persian_fa}
-                                              />
-                                              <FormControlLabel control={<Checkbox onChange={()=>setarshad((prev)=>!prev)}  />} label={<span className='yekan-regular'>مشغول به تحصیل </span>} />
-                                          </Grid>
+                                            <Grid xs={4}>
+                                                <FormControl className='w100' variant="outlined">
 
-                                          <Grid xs={4}>
-                                              <FormControl className='w100' variant="outlined">
+                                                    <span className='yekan-regular'> گرایش  :  </span>
+                                                    <TextField
+                                                        id="firstName"
+                                                        name='firstName'
 
-                                                  <span className='yekan-regular'> معدل  :  </span>
-                                                  <TextField
-                                                      id="firstName"
-                                                      name='firstName'
-                                                      disabled={arshad}
+                                                        value={formik.values.firstName}
+                                                        onChange={formik.handleChange}
+                                                        onBlur={formik.handleBlur}
 
-                                                      value={formik.values.firstName}
-                                                      onChange={formik.handleChange}
-                                                      onBlur={formik.handleBlur}
+                                                        error={formik.touched.firstName && Boolean(formik.errors.firstName)}
 
-                                                      error={formik.touched.firstName && Boolean(formik.errors.firstName)}
 
+                                                        helperText={formik.touched.firstName && formik.errors.firstName}
 
-                                                      helperText={formik.touched.firstName && formik.errors.firstName}
+                                                    />
 
-                                                  />
 
+                                                </FormControl>
+                                            </Grid>
 
+                                            <Grid xs={4}>
+                                                <FormControl className='w100' variant="outlined">
 
+                                                    <span className='yekan-regular'> دانشگاه  :  </span>
+                                                    <TextField
+                                                        id="firstName"
+                                                        name='firstName'
 
-                                              </FormControl>
-                                          </Grid>
+                                                        value={formik.values.firstName}
+                                                        onChange={formik.handleChange}
+                                                        onBlur={formik.handleBlur}
 
+                                                        error={formik.touched.firstName && Boolean(formik.errors.firstName)}
 
 
-                                      </Grid>
+                                                        helperText={formik.touched.firstName && formik.errors.firstName}
 
+                                                    />
 
-                                  </AccordionDetails>
-                              </Accordion>
-                          </Grid>
 
-                          <Grid xs={12}>
-                              <Accordion>
-                                  <AccordionSummary
-                                      expandIcon={<ArrowDownward />}
-                                      aria-controls="panel1-content"
-                                      id="panel1-header"
-                                  >
-                                      <Typography variant='h5' className='yekan-regular'>
-                                          مقطع دکتری
-                                      </Typography>
-                                  </AccordionSummary>
-                                  <AccordionDetails>
-                                      <Grid container spacing={4}>
-                                          <Grid xs={4}>
-                                              <FormControl className='w100' variant="outlined">
+                                                </FormControl>
+                                            </Grid>
 
-                                                  <span className='yekan-regular'> رشته  :  </span>
-                                                  <TextField
-                                                      id="firstName"
-                                                      name='firstName'
+                                            <Grid xs={4} sx={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'space-around'
+                                            }}>
+                                                <span className='yekan-regular'> تاریخ شروع :  </span>
 
-                                                      value={formik.values.firstName}
-                                                      onChange={formik.handleChange}
-                                                      onBlur={formik.handleBlur}
 
-                                                      error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+                                                <DatePicker style={{
+                                                    fontFamily: 'yekan-reg',
+                                                    fontSize: '1rem',
+                                                    padding: '1rem',
+                                                    textAlign: 'center'
+                                                }} className='yekan-regular' onChange={setDate} calendar={persian}
+                                                            locale={persian_fa}
+                                                            value={date}/>
+                                            </Grid>
 
+                                            <Grid xs={4} sx={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'space-around'
+                                            }}>
+                                                <span className='yekan-regular'> تاریخ پایان :  </span>
 
-                                                      helperText={formik.touched.firstName && formik.errors.firstName}
 
-                                                  />
+                                                <DatePicker disabled={phd} style={{
+                                                    fontFamily: 'yekan-reg',
+                                                    fontSize: '1rem',
+                                                    padding: '1rem',
+                                                    textAlign: 'center'
+                                                }} className='yekan-regular' onChange={setDate} calendar={persian}
+                                                            locale={persian_fa}
+                                                />
+                                                <FormControlLabel
+                                                    control={<Checkbox onChange={() => setphd((prev) => !prev)}/>}
+                                                    label={<span className='yekan-regular'>مشغول به تحصیل </span>}/>
+                                            </Grid>
 
+                                            <Grid xs={4}>
+                                                <FormControl className='w100' variant="outlined">
 
+                                                    <span className='yekan-regular'> معدل  :  </span>
+                                                    <TextField
+                                                        id="firstName"
+                                                        name='firstName'
+                                                        disabled={phd}
 
+                                                        value={formik.values.firstName}
+                                                        onChange={formik.handleChange}
+                                                        onBlur={formik.handleBlur}
 
-                                              </FormControl>
-                                          </Grid>
+                                                        error={formik.touched.firstName && Boolean(formik.errors.firstName)}
 
 
-                                          <Grid xs={4}>
-                                              <FormControl className='w100' variant="outlined">
+                                                        helperText={formik.touched.firstName && formik.errors.firstName}
 
-                                                  <span className='yekan-regular'> گرایش  :  </span>
-                                                  <TextField
-                                                      id="firstName"
-                                                      name='firstName'
+                                                    />
 
-                                                      value={formik.values.firstName}
-                                                      onChange={formik.handleChange}
-                                                      onBlur={formik.handleBlur}
 
-                                                      error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+                                                </FormControl>
+                                            </Grid>
 
 
-                                                      helperText={formik.touched.firstName && formik.errors.firstName}
+                                        </Grid>
 
-                                                  />
 
+                                    </AccordionDetails>
+                                </Accordion>
+                            </Grid>
 
 
+                            <Grid xs={12} sx={{textAlign: 'center'}}>
+                                <Button className='yekan-regular' type='submit' variant="contained">ادامه</Button>
+                            </Grid>
 
-                                              </FormControl>
-                                          </Grid>
 
-                                          <Grid xs={4}>
-                                              <FormControl className='w100' variant="outlined">
+                        </Grid>
+                    </form>
 
-                                                  <span className='yekan-regular'> دانشگاه  :  </span>
-                                                  <TextField
-                                                      id="firstName"
-                                                      name='firstName'
+                </Grid>
 
-                                                      value={formik.values.firstName}
-                                                      onChange={formik.handleChange}
-                                                      onBlur={formik.handleBlur}
 
-                                                      error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+            </Grid>
 
 
-                                                      helperText={formik.touched.firstName && formik.errors.firstName}
-
-                                                  />
-
-
-
-
-                                              </FormControl>
-                                          </Grid>
-
-                                          <Grid xs={4} sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
-                                              <span className='yekan-regular'> تاریخ شروع :  </span>
-
-
-                                              <DatePicker style={{
-                                                  fontFamily: 'yekan-reg',
-                                                  fontSize: '1rem',
-                                                  padding: '1rem',
-                                                  textAlign: 'center'
-                                              }} className='yekan-regular' onChange={setDate} calendar={persian}
-                                                          locale={persian_fa}
-                                                          value={date}/>
-                                          </Grid>
-
-                                          <Grid xs={4} sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
-                                              <span className='yekan-regular'> تاریخ پایان :  </span>
-
-
-                                              <DatePicker disabled={phd} style={{
-                                                  fontFamily: 'yekan-reg',
-                                                  fontSize: '1rem',
-                                                  padding: '1rem',
-                                                  textAlign: 'center'
-                                              }} className='yekan-regular' onChange={setDate} calendar={persian}
-                                                          locale={persian_fa}
-                                              />
-                                              <FormControlLabel control={<Checkbox onChange={()=>setphd((prev)=>!prev)}  />} label={<span className='yekan-regular'>مشغول به تحصیل </span>} />
-                                          </Grid>
-
-                                          <Grid xs={4}>
-                                              <FormControl className='w100' variant="outlined">
-
-                                                  <span className='yekan-regular'> معدل  :  </span>
-                                                  <TextField
-                                                      id="firstName"
-                                                      name='firstName'
-                                                      disabled={phd}
-
-                                                      value={formik.values.firstName}
-                                                      onChange={formik.handleChange}
-                                                      onBlur={formik.handleBlur}
-
-                                                      error={formik.touched.firstName && Boolean(formik.errors.firstName)}
-
-
-                                                      helperText={formik.touched.firstName && formik.errors.firstName}
-
-                                                  />
-
-
-
-
-                                              </FormControl>
-                                          </Grid>
-
-
-
-                                      </Grid>
-
-
-                                  </AccordionDetails>
-                              </Accordion>
-                          </Grid>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                          <Grid xs={12} sx={{textAlign: 'center'}}>
-                              <Button className='yekan-regular' type='submit' variant="contained">ادامه</Button>
-                          </Grid>
-
-
-                      </Grid>
-                  </form>
-
-              </Grid>
-
-
-          </Grid>
-
-
-
-      </>
-  )
+        </>
+    )
 }
 export default Education;

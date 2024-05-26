@@ -31,7 +31,7 @@ const Personalinfo = () => {
     // birthday
     const [date, setDate] = useState(new Date().toLocaleDateString('fa-IR'))
     const handlesubmit = (val, d) => {
-        dispatch(setstep(1))
+        dispatch(setstep(2))
         nav('/education')
        console.table(val)
         console.log(d.format())
@@ -77,13 +77,14 @@ const Personalinfo = () => {
                 <Grid xs={12}>
 
 
-                    <form onSubmit={formik.handleSubmit}>
-                        <Grid container columnSpacing={3} rowSpacing={5}>
+                    <form onSubmit={formik.handleSubmit} className='yekan-regular'>
+                        <Grid container columnSpacing={3} rowSpacing={5} sx={{'& .MuiInputBase-root' : {fontFamily:'yekan-reg'}}}>
                             <Grid xs={6}>
-                                <FormControl className='w100' variant="outlined">
+                                <FormControl className='w100 yekan-regular' variant="outlined" >
 
                                     <span className='yekan-regular'> نام  :  </span>
                                     <TextField
+
                                         id="firstName"
                                         name='firstName'
 

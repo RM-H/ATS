@@ -121,7 +121,7 @@ const Professional = () => {
         <>
 
 
-            <Grid container className='margins'>
+            <Grid container className='margins' sx={{'& .MuiInputBase-root' : {fontFamily:'yekan-reg'}}}>
                 <Grid xs={12}>
 
 
@@ -172,8 +172,6 @@ const Professional = () => {
                         <Button className='yekan-regular' type='submit' variant="contained">+</Button>
                     </form>
 
-                    <Button className='yekan-regular' onClick={() => console.log(formik.initialValues)}
-                            variant="contained">test</Button>
 
                 </Grid>
 

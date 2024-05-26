@@ -178,16 +178,10 @@ const Navbar = (props) => {
                             <Grid xs={5} sx={{display: 'flex'}}>
                                 <Button onClick={() => nav('/')} className='underline yekan-regular clrblack' color="primary">خانه</Button>
 
-                                <Button onClick={() => {
-
-                                    setTimeout(() => {
-                                        let el = document.getElementById('services');
-                                        el.scrollIntoView({behavior: "smooth"})
-                                    }, 200)
-                                    nav('/');
+                                <Button
 
 
-                                }} className='underline yekan-regular clrblack' color="primary">آیتم</Button>
+                               className='underline yekan-regular' color="primary">نام شخص</Button>
 
 
                             </Grid>
