@@ -2,15 +2,28 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import {useState} from 'react'
 import {Spinner} from '../components/index.js'
+import * as yup from "yup";
 
 
 
 const Login = () => {
+
+
     const [loading, setLoading] = useState(false)
+    const [phoneentered, setphoneentered] = useState(false)
 
 
 
-    const HandleLogin = () => {
+
+    const HandleLogin = (v) => {
+
+        console.log(v)
+        if (phoneentered===false) {
+            setphoneentered(true)
+                // await get the code
+        } else {
+            console.log(2)
+        }
 
     }
 
@@ -20,7 +33,7 @@ const Login = () => {
 
             <div
 
-                 style={{width: "100wv", height: '100vh' , display:'flex', justifyContent:'center' , alignItems:'center' , backgroundImage:'url(/assets/images/wallpaper.jpg)' ,transition:'all 0.5s', backgroundSize:'cover' , backgroundRepeat:'no-repeat'}}>
+                 style={{width: "100wv", height: '100vh' , display:'flex', justifyContent:'center' , alignItems:'center' , backgroundImage:'url(/assets/images/wallpaper.jpg)' , backgroundSize:'auto' , backgroundRepeat:'no-repeat'}}>
 
 
 
@@ -39,16 +52,16 @@ const Login = () => {
                         <h2>
                            به سامانه رهگیری استخدام (ATS) افق ایرانیان خوش آمدید.
                         </h2>
-                        <Spinner/>
+
                     </div>
 
                     <div className="login">
 
 
-                        <Formik initialValues={{username: '', password: ''}} validationSchema={Yup.object().shape({
+                        <Formik initialValues={{phone: '', code: ''}} validationSchema={Yup.object().shape({
 
-                            username: Yup.string().required('ضروری'),
-                            password: Yup.string().required('ضروری')
+                            phone: Yup.string().matches(/^[0-9]+$/, 'فقط عدد').length(11, 'شماره درست وارد نشده است').required('ضروری'),
+
 
                         })} onSubmit={(values) => HandleLogin(values)}>
                             {({errors, touched}) => (
@@ -56,21 +69,35 @@ const Login = () => {
 
 
                                     <label htmlFor="chk" aria-hidden="true">ورود</label>
-                                    <Field className='yekan' type="text" id="username" name="username"
-                                           placeholder="نام کاربری"/>
-                                    <ErrorMessage component='span' className='has-text-danger yekan mx-auto'
-                                                  name='email'/>
-                                    <Field className='yekan' type="Password" id="password" name="password"
-                                           placeholder="رمز عبور"
+                                    <Field disabled={phoneentered} className='yekan' type="text" id="phone" name="phone"
+                                           placeholder="شماره تلفن"/>
+                                    <ErrorMessage style={{textAlign:'center' , color:'white'}} component='p' className='yekan-regular '
+                                                  name='phone'/>
 
-                                    />
+                                    {
+                                        phoneentered &&   <Field   className='yekan' type="Password" id="code" name="code"
+                                                                   placeholder="کد ارسال شده"
+
+
+                                        />
+                                    }
+
                                     <ErrorMessage component='span' className='has-text-danger yekan' name='pswd'/>
                                     <button disabled={loading} className='my-4' type='submit'>
                                         {
-                                            loading ? <Spinner/> : 'ورود'
+                                            loading ? <Spinner/> : phoneentered ? 'ورود' :'ارسال کد'
                                         }
 
                                     </button>
+
+                                    {
+                                        phoneentered && <button onClick={()=>{
+                                            setphoneentered(false);
+
+                                        }}  style={{backgroundColor:'rgba(88,86,86,0.39)' , border:'1px solid white'}}>
+                                        ویرایش/تغییر شماره
+                                        </button>
+                                    }
 
 
 

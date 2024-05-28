@@ -48,13 +48,24 @@ const Departement = () => {
         <>
             <Grid className='margins' container sx={{justifyContent:'center'}}>
 
-                <Grid xs={12} sx={{mt:8}}>
-                    <Typography component='h2' className='yekan-regular'>
-                        لطفا دپارتمان مورد نظر خود جهت همکاری را انتخاب کنید:
-                    </Typography>
+                <Grid xs={12} sx={{my:2}} >
+                    <Paper elevation={3} sx={{p:3}}>
 
+                        <Typography className='yekan-regular' component='article'>
+                            {
+                                content
+                            }
+                        </Typography>
+
+
+
+                    </Paper>
                 </Grid>
-                <Grid xs={12} sx={{ mt:2 }}>
+
+
+
+
+                <Grid xs={12} sx={{ my:3 }}>
                     <FormControl fullWidth>
                         <InputLabel id="demo-simple-select-label" className='yekan-regular'>دپارتمان</InputLabel>
                         <Select
@@ -74,19 +85,7 @@ const Departement = () => {
                     </FormControl>
                 </Grid>
 
-                <Grid xs={12} sx={{my:2}} >
-                    <Paper elevation={3} sx={{p:3}}>
 
-                        <Typography className='yekan-regular' component='article'>
-                            {
-                                content
-                            }
-                        </Typography>
-
-
-
-                    </Paper>
-                </Grid>
 
                 <Grid xs={12} sx={{textAlign: 'center'}}>
                     <Button className='yekan-regular' variant='contained' onClick={handleNexty}>ادامه</Button>
