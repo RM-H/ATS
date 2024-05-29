@@ -32,7 +32,7 @@ const Personalinfo = () => {
     const [date, setDate] = useState(new Date().toLocaleDateString('fa-IR'))
     const handlesubmit = (val, d) => {
         dispatch(setstep(2))
-        nav('/education')
+        nav('/ats/education')
        console.table(val)
         console.log(d.format())
     }

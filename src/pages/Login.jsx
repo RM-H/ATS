@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import {useState} from 'react'
 import {Spinner} from '../components/index.js'
 import * as yup from "yup";
+import {useNavigate} from "react-router-dom";
 
 
 
@@ -13,6 +14,7 @@ const Login = () => {
     const [phoneentered, setphoneentered] = useState(false)
 
 
+    const nav = useNavigate()
 
 
     const HandleLogin = (v) => {
@@ -22,7 +24,7 @@ const Login = () => {
             setphoneentered(true)
                 // await get the code
         } else {
-            console.log(2)
+            nav('/ats')
         }
 
     }

@@ -20,7 +20,7 @@ const Departement = () => {
     const handleNexty = ()=>{
     if (dep !==false){
         dispatch(setstep(1))
-        nav('/personal')
+        nav('/ats/personal')
     } else {
         toast.error('ابتدا دپارتمان را انتخاب کنید.')
 

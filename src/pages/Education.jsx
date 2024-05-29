@@ -38,7 +38,7 @@ const Education = () => {
         console.table(val)
         // console.log(d.format())
         dispatch(setstep(3))
-        nav('/professional')
+        nav('/ats/professional')
     }
     const validationSchema = yup.object({
 

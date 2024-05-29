@@ -8,28 +8,28 @@ import {store} from "./store/store.js";
 import {Persnalinfo,Education,Professional,Department,Login} from './pages/index.js'
 const router = createBrowserRouter([
     {
-        path: "/",
+        path: "/ats",
         element: <Mainlayout/>,
 
 
 
         children:[
             {
-                path:'/' ,
+                path:'/ats' ,
                 element: <Department/>
             } ,
             {
-                path:'/personal' ,
+                path:'/ats/personal' ,
                 element: <Persnalinfo/>
             } ,
             {
-                path:'/education' ,
+                path:'/ats/education' ,
                 element:<Education/>
 
             }
             ,
             {
-                path:'/professional' ,
+                path:'/ats/professional' ,
                 element:<Professional/>
 
             }
@@ -39,7 +39,7 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path:'/login' ,
+        path:'/' ,
         element: <Login/>
     }
 ]);

@@ -129,9 +129,9 @@ const Workitem = ({item,fields,setfields}) => {
 
 
 
-                              <Button variant="outlined" type="submit">Outlined</Button>
+                              <Button variant="outlined" color='success' className='yekan-regular w100' type="submit" sx={{mt:4}}>اضافه کن</Button>
 
-                              <button className='' type="submit">Submit</button>
+
                           </Form>
 
                       </Formik>

@@ -22,7 +22,7 @@ const Steps = () => {
           <Grid container className='margins' sx={{pt:15}}>
 
               <Grid xs={12} sx={{pt:1}} >
-                  <LinearProgress className='shadowone' variant='determinate' color='success' value={step*33.3} sx={{transform:'rotateY(180deg)' , '&.MuiLinearProgress-root':{
+                  <LinearProgress className='shadowone' variant='determinate' color='success' value={step*16.6} sx={{transform:'rotateY(180deg)' , '&.MuiLinearProgress-root':{
                       height:'0.9rem' ,
                           backgroundColor: 'rgba(115,115,117,0.44)'
                       } , '& .MuiLinearProgress-bar ':{
@@ -33,29 +33,29 @@ const Steps = () => {
 
                       <FormGroup  sx={{flexDirection:'row' , justifyContent:'space-between'}}>
 
-                          <FormControlLabel disabled={step >2? false:true} defaultChecked   control={<IconButton onClick={()=>nav('/professional')} color='success'>
+                          <FormControlLabel disabled={step >=1? false:true} defaultChecked   control={<IconButton onClick={()=>nav('/professional')} color='success'>
                               <ForkRight/>
                           </IconButton> } label={<span className='yekan-regular'>انتخاب دپارتمان </span>} />
 
-                          <FormControlLabel disabled={(step ===0)}  defaultChecked   control={<IconButton onClick={()=>nav('/')} color='success'>
+                          <FormControlLabel disabled={step >=2? false:true}  defaultChecked   control={<IconButton onClick={()=>nav('/')} color='success'>
                               <Fingerprint/>
                           </IconButton> } label={<span className='yekan-regular'>اطلاعات فردی </span>} />
 
 
-                          <FormControlLabel disabled={step >1 ? false:true} defaultChecked   control={<IconButton onClick={()=>nav('/education')} color='success'>
+                          <FormControlLabel disabled={step >=3 ? false:true} defaultChecked   control={<IconButton onClick={()=>nav('/education')} color='success'>
                               <School/>
                           </IconButton> } label={<span className='yekan-regular'>اطلاعات تحصیلی </span>} />
 
 
-                          <FormControlLabel disabled={step >2? false:true} defaultChecked   control={<IconButton onClick={()=>nav('/professional')} color='success'>
+                          <FormControlLabel disabled={step >=4? false:true} defaultChecked   control={<IconButton onClick={()=>nav('/professional')} color='success'>
                               <Work/>
                           </IconButton> } label={<span className='yekan-regular'>سوابق کاری </span>} />
 
-                          <FormControlLabel disabled={step >2? false:true} defaultChecked   control={<IconButton onClick={()=>nav('/professional')} color='success'>
+                          <FormControlLabel disabled={step >=5? false:true} defaultChecked   control={<IconButton onClick={()=>nav('/professional')} color='success'>
                               <Quiz/>
                           </IconButton> } label={<span className='yekan-regular'>مهارت های تخصصی</span>} />
 
-                          <FormControlLabel disabled={step >2? false:true} defaultChecked   control={<IconButton onClick={()=>nav('/professional')} color='success'>
+                          <FormControlLabel disabled={step >=6? false:true} defaultChecked   control={<IconButton onClick={()=>nav('/professional')} color='success'>
                               <ConnectWithoutContact/>
                           </IconButton> } label={<span className='yekan-regular'>وضعیت</span>} />
 
