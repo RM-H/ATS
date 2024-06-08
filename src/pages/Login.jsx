@@ -1,9 +1,11 @@
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
-import {useState} from 'react'
+import React, {useState} from 'react'
 import {Spinner} from '../components/index.js'
 import * as yup from "yup";
 import {useNavigate} from "react-router-dom";
+import {getSms,verifySmsCode} from '../services/service.js'
+import {toast, ToastContainer} from "react-toastify";
 
 
 
@@ -17,14 +19,38 @@ const Login = () => {
     const nav = useNavigate()
 
 
-    const HandleLogin = (v) => {
+    const HandleLogin =async (v) => {
 
-        console.log(v)
+
         if (phoneentered===false) {
-            setphoneentered(true)
-                // await get the code
+            const form = new FormData
+            form.append('phone',v.phone)
+            setLoading(true)
+            const res = await getSms(form)
+            if (res.data.code==1){
+                setphoneentered(true)
+                setLoading(false)
+                toast.success('کد ارسال شد')
+            } else {
+                toast.warning(res.data.error)
+            }
+
+
+
         } else {
-            nav('/ats')
+            const form = new FormData
+            form.append('phone',v.phone)
+            form.append('code',v.code);
+            setLoading(true)
+            let resp = await verifySmsCode(form)
+            console.log(resp)
+          if (resp.data.code===1){
+              setLoading(false)
+              toast.success('با موفقیت وارد شدید')
+          } else {
+             toast.warning(resp.data.error)
+          }
+
         }
 
     }
@@ -36,6 +62,9 @@ const Login = () => {
             <div
 
                  style={{width: "100wv", height: '100vh' , display:'flex', justifyContent:'center' , alignItems:'center' , backgroundImage:'url(/assets/images/wallpaper.jpg)' , backgroundSize:'auto' , backgroundRepeat:'no-repeat'}}>
+
+
+
 
 
 
@@ -117,6 +146,19 @@ const Login = () => {
 
                 </div>
             </div>
+
+            <ToastContainer position="top-center"
+                            autoClose={3690}
+                            hideProgressBar={false}
+                            newestOnTop
+                            closeOnClick
+                            rtl={true}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                            theme="dark"
+
+                            transition: Bounce/>
 
         </>
     )

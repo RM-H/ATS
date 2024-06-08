@@ -47,6 +47,7 @@ const router = createBrowserRouter([
 
 
 import { createTheme , ThemeProvider } from '@mui/material/styles';
+import {ToastContainer} from "react-toastify";
 
 const theme = createTheme({
     direction: 'rtl',
@@ -58,7 +59,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
       <RouterProvider router={router}>
           <ThemeProvider theme={theme}>
+
               <Mainlayout/>
+
+
 
           </ThemeProvider>
 

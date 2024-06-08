@@ -33,7 +33,7 @@ const Steps = () => {
 
                       <FormGroup  sx={{flexDirection:'row' , justifyContent:'space-between'}}>
 
-                          <FormControlLabel disabled={step >=1? false:true} defaultChecked   control={<IconButton onClick={()=>nav('/professional')} color='success'>
+                          <FormControlLabel disabled={step >=1? false:true} defaultChecked   control={<IconButton onClick={()=>nav('/ats')} color='success'>
                               <ForkRight/>
                           </IconButton> } label={<span className='yekan-regular'>انتخاب دپارتمان </span>} />
 
