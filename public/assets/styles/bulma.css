@@ -1758,9 +1758,9 @@ div.icon-text {
 }
 
 .loader {
-    animation: spinAround .5s linear infinite;
-    border-bottom: 2px solid var(--bulma-border);
-    border-left: 2px solid var(--bulma-border);
+    /*animation: spinAround .5s linear infinite;*/
+    /*border-bottom: 2px solid var(--bulma-border);*/
+    /*border-left: 2px solid var(--bulma-border);*/
     border-radius: var(--bulma-radius-rounded);
     border-right: 2px solid transparent;
     border-top: 2px solid transparent;

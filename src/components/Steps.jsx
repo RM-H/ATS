@@ -37,7 +37,7 @@ const Steps = () => {
                               <ForkRight/>
                           </IconButton> } label={<span className='yekan-regular'>انتخاب دپارتمان </span>} />
 
-                          <FormControlLabel disabled={step >=2? false:true}  defaultChecked   control={<IconButton onClick={()=>nav('/')} color='success'>
+                          <FormControlLabel disabled={step >=2? false:true}  defaultChecked   control={<IconButton onClick={()=>nav('/ats/personal')} color='success'>
                               <Fingerprint/>
                           </IconButton> } label={<span className='yekan-regular'>اطلاعات فردی </span>} />
 

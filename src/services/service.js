@@ -1,6 +1,7 @@
 import axios from "axios";
 
-export const url = 'http://192.168.1.111/api/v1/ats'
+export const url = 'https://mis.ofoghiranianteam.ir/api/v1/ats'
+export const baseurl = 'https://mis.ofoghiranianteam.ir'
 
 
 
@@ -16,4 +17,22 @@ export const getSms = (phone) => {
 // user enters the code recived in sms to get the toekn
 export const verifySmsCode = (code) => {
   return axios.post(`${url}/code`,code)
+}
+
+
+
+// splash info
+export const getSplash = () => {
+  return axios.get(`${url}/splash`)
+}
+
+
+// department selection
+export const selectDepartment = (dep) => {
+  return axios.post(`${url}/savedepartemant`,dep)
+}
+
+// users personal info
+export const saveUserinfo = (info) => {
+  return axios.post(`${url}/savepersonal`,info)
 }

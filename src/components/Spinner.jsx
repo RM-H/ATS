@@ -6,7 +6,7 @@
 const Spinner = () => {
   return(
       <>
-          <span className="loader"></span>
+          <span className="loader" style={{marginRight:'auto' , marginLeft:'auto'}}></span>
 
       </>
   )

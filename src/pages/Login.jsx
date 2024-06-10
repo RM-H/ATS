@@ -1,16 +1,18 @@
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
-import React, {useState} from 'react'
+import  {useState} from 'react'
 import {Spinner} from '../components/index.js'
 import * as yup from "yup";
 import {useNavigate} from "react-router-dom";
 import {getSms,verifySmsCode} from '../services/service.js'
 import {toast, ToastContainer} from "react-toastify";
-
+import {useDispatch} from "react-redux";
+import {setuser} from '../slices/userSlice.js'
 
 
 const Login = () => {
 
+    const dispatch = useDispatch()
 
     const [loading, setLoading] = useState(false)
     const [phoneentered, setphoneentered] = useState(false)
@@ -43,9 +45,14 @@ const Login = () => {
             form.append('code',v.code);
             setLoading(true)
             let resp = await verifySmsCode(form)
-            console.log(resp)
+            console.log(resp.data)
+
           if (resp.data.code===1){
+              dispatch(setuser(resp.data))
               setLoading(false)
+
+
+              nav('/ats')
               toast.success('با موفقیت وارد شدید')
           } else {
              toast.warning(resp.data.error)
@@ -106,7 +113,7 @@ const Login = () => {
                                                   name='phone'/>
 
                                     {
-                                        phoneentered &&   <Field   className='yekan' type="Password" id="code" name="code"
+                                        phoneentered &&   <Field   className='yekan' type="tel" id="code" name="code"
                                                                    placeholder="کد ارسال شده"
 
 
@@ -114,10 +121,12 @@ const Login = () => {
                                     }
 
                                     <ErrorMessage component='span' className='has-text-danger yekan' name='pswd'/>
-                                    <button disabled={loading} className='my-4' type='submit'>
+                                    <button disabled={loading} className='my-4' type='submit' >
                                         {
                                             loading ? <Spinner/> : phoneentered ? 'ورود' :'ارسال کد'
                                         }
+
+
 
                                     </button>
 
