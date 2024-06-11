@@ -36,3 +36,26 @@ export const selectDepartment = (dep) => {
 export const saveUserinfo = (info) => {
   return axios.post(`${url}/savepersonal`,info)
 }
+
+// users kardani education
+export const saveKardani = (education) => {
+  return axios.post(`${url}/saveeducation1`,education)
+}
+
+// users karshenasi education
+export const saveKarshenasi = (education) => {
+  return axios.post(`${url}/saveeducation2`,education)
+}
+
+
+
+// users karshenasi arshad education
+export const saveKarshenasiArshad = (education) => {
+  return axios.post(`${url}/saveeducation3`,education)
+}
+
+
+// users phd education
+export const savePhd = (education) => {
+  return axios.post(`${url}/saveeducation4`,education)
+}

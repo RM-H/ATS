@@ -45,6 +45,9 @@ body {
 .clrtwo {
     background-color: #1B95A2;
 }
+.clrtwotext {
+    color: #1B95A2;
+}
 .clrthree {
     background-color: #737375;
 }
@@ -54,6 +57,9 @@ body {
 }
 .clrfive {
     background-color: #AB9D7C;
+}
+.clrsixtext {
+    color: #FF4941;
 }
 
 

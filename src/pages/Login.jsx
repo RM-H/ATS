@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 import {getSms,verifySmsCode} from '../services/service.js'
 import {toast, ToastContainer} from "react-toastify";
 import {useDispatch} from "react-redux";
-import {setuser} from '../slices/userSlice.js'
+import {setuser,setstep} from '../slices/userSlice.js'
 
 
 const Login = () => {
@@ -48,6 +48,17 @@ const Login = () => {
             console.log(resp.data)
 
           if (resp.data.code===1){
+
+
+              // user continues his steps
+              if (resp.data.user.departemant) {
+                  dispatch(setstep(1))
+              }
+              if (resp.data.user.name) {
+                  dispatch(setstep(2))
+              }
+
+
               dispatch(setuser(resp.data))
               setLoading(false)
 
