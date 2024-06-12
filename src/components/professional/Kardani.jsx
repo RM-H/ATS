@@ -8,7 +8,7 @@ import {
     Button,
     Typography
 } from "@mui/material";
-import {ArrowDownward} from "@mui/icons-material";
+import {ArrowDownward,DoneOutline} from "@mui/icons-material";
 import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
@@ -18,12 +18,12 @@ import * as Yup from "yup";
 import {Spinner} from "../index.js";
 import {useEffect, useState} from "react";
 import {saveKardani} from '../../services/service.js'
-import {useSelector} from "react-redux";
-import {userselector} from "../../slices/userSlice.js";
+import {useDispatch, useSelector} from "react-redux";
+import {userselector,setuser} from "../../slices/userSlice.js";
 import {toast} from "react-toastify";
 
 const Kardani = () => {
-
+    const dispatch = useDispatch()
     const user = useSelector(userselector)
     const [startdate, setstartDate] = useState('')
     const [enddate, setendDate] = useState('')
@@ -70,7 +70,9 @@ const Kardani = () => {
         if (response.data.code==1) {
             toast.success('با موفقیت ثبت شد')
             setLoading(false)
-            console.log(response.data)
+            dispatch(setuser(response.data))
+
+
         } else {
             setLoading(false)
             toast.warning(response.data.error)
@@ -104,7 +106,7 @@ const Kardani = () => {
                         <Form className='has-text-centered'>
 
 
-                            <Accordion>
+                            <Accordion elevation={3}>
                                 <AccordionSummary
                                     expandIcon={<ArrowDownward/>}
                                     aria-controls="panel1-content"
@@ -113,6 +115,13 @@ const Kardani = () => {
                                     <Typography variant='h5' className='yekan-regular'>
                                         مقطع کاردانی
                                     </Typography>
+
+                                    {
+                                        user.education1 !==false &&   <DoneOutline className='clrtwotext' sx={{ mr:3}}/>
+                                    }
+
+
+
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Grid container spacing={4}>

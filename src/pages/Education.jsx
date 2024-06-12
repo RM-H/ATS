@@ -1,6 +1,6 @@
 
 import Grid from "@mui/material/Unstable_Grid2";
-import {Button} from '@mui/material'
+import {Button,Divider} from '@mui/material'
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {Kardani, Karshenasi , KarshenasiArshad , Phd} from '../components/index.js'
@@ -29,6 +29,7 @@ const Education = () => {
             <Grid container className='margins' sx={{'& .MuiInputBase-root': {fontFamily: 'yekan-reg'}}}>
 
                 <Kardani/>
+
                 <Karshenasi/>
                 <KarshenasiArshad/>
                 <Phd/>

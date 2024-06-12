@@ -42,7 +42,7 @@ const Steps = () => {
                           </IconButton> } label={<span className='yekan-regular'>اطلاعات فردی </span>} />
 
 
-                          <FormControlLabel disabled={step >=3 ? false:true} defaultChecked   control={<IconButton onClick={()=>nav('/education')} color='success'>
+                          <FormControlLabel disabled={step >=3 ? false:true} defaultChecked   control={<IconButton onClick={()=>nav('/ats/education')} color='success'>
                               <School/>
                           </IconButton> } label={<span className='yekan-regular'>اطلاعات تحصیلی </span>} />
 

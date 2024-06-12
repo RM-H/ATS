@@ -8,7 +8,7 @@ import {
     Button,
     Typography
 } from "@mui/material";
-import {ArrowDownward} from "@mui/icons-material";
+import {ArrowDownward, DoneOutline} from "@mui/icons-material";
 import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
@@ -16,15 +16,15 @@ import persian_fa from "react-date-object/locales/persian_fa";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import {Spinner} from "../index.js";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {saveKarshenasiArshad} from '../../services/service.js'
-import {useSelector} from "react-redux";
-import {userselector} from "../../slices/userSlice.js";
+import {useDispatch, useSelector} from "react-redux";
+import {setuser, userselector} from "../../slices/userSlice.js";
 import {toast} from "react-toastify";
 
 const Karshenasiarshad = () => {
 
-
+    const dispatch = useDispatch()
     const [startdate, setstartDate] = useState('')
     const [enddate, setendDate] = useState('')
 
@@ -39,7 +39,18 @@ const Karshenasiarshad = () => {
     const [loading, setLoading] = useState(false)
 
 
-    const handlekarshenasi = async (val, start, end) => {
+    useEffect(() => {
+        if (user.education3 && user.education3 !==false){
+            setstartDate(user.education3.start)
+            setendDate(user.education3.end)
+            setStudying(user.education3.studying)
+
+
+        }
+
+
+    }, []);
+    const handlekarshenasiArshad = async (val, start, end) => {
 
         let data = {
             major: val.major,
@@ -58,7 +69,7 @@ const Karshenasiarshad = () => {
         if (response.data.code==1) {
             toast.success('با موفقیت ثبت شد')
             setLoading(false)
-            console.log(response.data)
+            dispatch(setuser(response.data))
         } else {
             setLoading(false)
             toast.warning(response.data.error)
@@ -82,20 +93,24 @@ const Karshenasiarshad = () => {
 
 
                         })}
-                        onSubmit={(values) => handlekarshenasi(values, startdate, enddate)}>
+                        onSubmit={(values) => handlekarshenasiArshad(values, startdate, enddate)}>
                     {({errors, touched}) => (
                         <Form className='has-text-centered'>
 
 
-                            <Accordion>
+                            <Accordion elevation={3}>
                                 <AccordionSummary
                                     expandIcon={<ArrowDownward/>}
                                     aria-controls="panel1-content"
                                     id="panel1-header"
                                 >
                                     <Typography variant='h5' className='yekan-regular'>
-                                        مقطع کارشناسی
+                                        مقطع کارشناسی ارشد
                                     </Typography>
+                                    {
+                                        user.education1 !==false &&   <DoneOutline className='clrtwotext' sx={{ mr:3}}/>
+                                    }
+
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Grid container spacing={4}>
@@ -161,7 +176,7 @@ const Karshenasiarshad = () => {
                                                 fontSize: '1rem',
                                                 padding: '1rem',
                                                 textAlign: 'center'
-                                            }} className='yekan-regular' onChange={setendDate} calendar={persian}
+                                            }} className='yekan-regular' onChange={setendDate} calendar={persian} value={enddate}
                                                         locale={persian_fa}
                                             />
                                             <FormControlLabel

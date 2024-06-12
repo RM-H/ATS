@@ -8,7 +8,7 @@ import {
     Button,
     Typography
 } from "@mui/material";
-import {ArrowDownward} from "@mui/icons-material";
+import {ArrowDownward, DoneOutline} from "@mui/icons-material";
 import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
@@ -16,15 +16,15 @@ import persian_fa from "react-date-object/locales/persian_fa";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import {Spinner} from "../index.js";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {saveKarshenasi} from '../../services/service.js'
-import {useSelector} from "react-redux";
-import {userselector} from "../../slices/userSlice.js";
+import {useDispatch, useSelector} from "react-redux";
+import {setuser, userselector} from "../../slices/userSlice.js";
 import {toast} from "react-toastify";
 
 const Karshenasi = () => {
 
-
+    const dispatch = useDispatch()
     const [startdate, setstartDate] = useState('')
     const [enddate, setendDate] = useState('')
 
@@ -38,6 +38,20 @@ const Karshenasi = () => {
     // animation control
     const [loading, setLoading] = useState(false)
 
+
+
+
+    useEffect(() => {
+        if (user.education2 && user.education2 !==false){
+            setstartDate(user.education2.start)
+            setendDate(user.education2.end)
+            setStudying(user.education2.studying)
+
+
+        }
+
+
+    }, []);
 
     const handlekarshenasi = async (val, start, end) => {
 
@@ -58,7 +72,8 @@ const Karshenasi = () => {
         if (response.data.code==1) {
             toast.success('با موفقیت ثبت شد')
             setLoading(false)
-            console.log(response.data)
+            dispatch(setuser(response.data))
+
         } else {
             setLoading(false)
             toast.warning(response.data.error)
@@ -87,7 +102,7 @@ const Karshenasi = () => {
                         <Form className='has-text-centered'>
 
 
-                            <Accordion>
+                            <Accordion elevation={3}>
                                 <AccordionSummary
                                     expandIcon={<ArrowDownward/>}
                                     aria-controls="panel1-content"
@@ -96,6 +111,10 @@ const Karshenasi = () => {
                                     <Typography variant='h5' className='yekan-regular'>
                                         مقطع کارشناسی
                                     </Typography>
+                                    {
+                                        user.education1 !==false &&   <DoneOutline className='clrtwotext' sx={{ mr:3}}/>
+                                    }
+
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Grid container spacing={4}>
@@ -161,7 +180,7 @@ const Karshenasi = () => {
                                                 fontSize: '1rem',
                                                 padding: '1rem',
                                                 textAlign: 'center'
-                                            }} className='yekan-regular' onChange={setendDate} calendar={persian}
+                                            }} className='yekan-regular' onChange={setendDate} calendar={persian} value={enddate}
                                                         locale={persian_fa}
                                             />
                                             <FormControlLabel
