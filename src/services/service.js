@@ -59,3 +59,9 @@ export const saveKarshenasiArshad = (education) => {
 export const savePhd = (education) => {
   return axios.post(`${url}/saveeducation4`,education)
 }
+
+
+// users professional history
+export const saveWorks = (works) => {
+  return axios.post(`${url}/saveworks`,works)
+}

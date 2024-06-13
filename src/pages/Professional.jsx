@@ -11,25 +11,75 @@ import {
     Typography
 } from "@mui/material";
 
-import {useState} from "react";
-import {Workitem} from '../components/index.js'
+import {useEffect, useState} from "react";
+import {Workitem, Spinner} from '../components/index.js'
+import {useDispatch, useSelector} from "react-redux";
+import {workselector, userselector, setuser, setstep} from "../slices/userSlice.js";
+import {saveWorks} from '../services/service.js'
+import {toast} from "react-toastify";
 
 
 const Professional = () => {
+
+    // controlling loading
+
+    const [loading, setLoading] = useState(false)
+
+    // work items in redux
+    const works = useSelector(workselector)
+    const dispatch = useDispatch()
+    // user info
+    const user = useSelector(userselector)
+
+
+
+
+    // adding work items to fields
+
+    useEffect(() => {
+        if (user.works !==false){
+
+            let items =[]
+            user.works.map((item)=>{
+                items.push(item.company)
+
+            })
+            setFileds(items)
+        }
+    }, []);
+
+
+
+
+    const handleNext = async () => {
+        const formdata = new FormData()
+        formdata.append("token", user.user.token)
+        formdata.append('data', JSON.stringify(works))
+
+
+        setLoading(true)
+
+        const response = await saveWorks(formdata)
+        if (response.data.code == 1) {
+            toast.success('سوابق شغلی با موفقیت اضافه شد.')
+            dispatch(setstep(4))
+            dispatch(setuser(response.data))
+            setLoading(false)
+            console.log(response.data)
+
+        } else {
+            setLoading(false)
+            toast.warning(response.data.error)
+        }
+
+
+    }
 
 
     // adding a new form for professional history
     const [fields, setFileds] = useState([])
 
 
-    const [kardani, setkardani] = useState(false)
-    const [date, setDate] = useState(new Date().toLocaleDateString('fa-IR'))
-
-
-    const handlesubmit = (val, d) => {
-        console.table(val)
-        // console.log(d.format())
-    }
     const validationSchema = yup.object({
 
         firstName: yup.string().max(25, 'نام بصورت صحیح وارد نشده').required('ضروری'),
@@ -45,24 +95,6 @@ const Professional = () => {
         tel: yup.string().matches(/^[0-9]+$/, 'فقط عدد').length(11, 'شماره درست وارد نشده است').required('ضروری')
 
     });
-
-
-
-    const formik = useFormik({
-        initialValues: {
-
-        },
-    validationSchema: validationSchema,
-        onSubmit
-:
-    (values) => {
-        handlesubmit(values, date)
-    },
-})
-
-
-
-
 
 
     const addnewfield = useFormik({
@@ -85,7 +117,7 @@ const Professional = () => {
     const handleadd = (val) => {
 
 
-        console.log(val)
+
 
         let copy = [...fields, val.title];
 
@@ -102,14 +134,8 @@ const Professional = () => {
         content = fields.map((item, index) => {
 
 
-
-
-
-
-
-
                 return (
-                   <Workitem item={item} key={index} fields={fields} setfields={setFileds} />
+                    <Workitem item={item} key={index} fields={fields} setfields={setFileds}/>
 
                 )
             }
@@ -121,31 +147,26 @@ const Professional = () => {
         <>
 
 
-            <Grid container className='margins' sx={{'& .MuiInputBase-root' : {fontFamily:'yekan-reg'}}}>
-                <Grid xs={12}>
-
-
-                    <form onSubmit={formik.handleSubmit}>
-                        <Grid container columnSpacing={3} rowSpacing={5}>
+            <Grid container className='margins' sx={{'& .MuiInputBase-root': {fontFamily: 'yekan-reg'}}}>
 
 
 
+                {
+                    content
+                }
 
 
-                            <Grid xs={12} sx={{textAlign: 'center'}}>
-                                <Button className='yekan-regular' type='submit' variant="contained">ادامه</Button>
-                            </Grid>
-
-
-                        </Grid>
-                    </form>
-
+                <Grid xs={12} sx={{textAlign: 'center'}}>
 
                     {
-                        content
+                        loading ? <Spinner/> :
+                            <Button className='yekan-regular' onClick={handleNext} variant="contained">ادامه</Button>
                     }
 
+                </Grid>
 
+
+                <Grid xs={12}>
                     <form onSubmit={addnewfield.handleSubmit}>
 
 
@@ -169,10 +190,9 @@ const Professional = () => {
 
 
                         </FormControl>
-                        <Button className='yekan-regular' type='submit' variant="contained">+</Button>
+                        <Button className='yekan-regular' type='submit' variant="contained" sx={{my: 2}}>+</Button>
+
                     </form>
-
-
                 </Grid>
 
 

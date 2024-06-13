@@ -16,8 +16,11 @@ import Grid from '@mui/material/Unstable_Grid2'
 import {useState} from "react";
 import {Menu, Logout} from '@mui/icons-material'
 import {Link, useNavigate} from 'react-router-dom'
+import {useSelector} from "react-redux";
+import {userselector} from "../slices/userSlice.js";
 
 const Navbar = (props) => {
+    const user = useSelector(userselector)
     const [activePage, setActivePage] = useState(0)
     const handleActivePage = (page) => {
         setActivePage(page)
@@ -165,23 +168,29 @@ const Navbar = (props) => {
                             <Menu/>
                         </IconButton>
 
-                        <Grid container sx={{width: '100%', display: {xs: 'none' , md:'flex'},}}>
+                        <Grid container sx={{width: '100%', display: {xs: 'none', md: 'flex'},}}>
 
                             <Grid xs={2} sx={{display: 'flex', justifyContent: 'center'}}>
 
                                 <img src="/assets/images/logo.png" alt="logo" style={{borderRadius: '50%'}} width={100}
-                                     />
+                                />
                             </Grid>
 
 
-
-                            <Grid xs={5} sx={{display: 'flex'}}>
-                                <Button onClick={() => nav('/')} className='underline yekan-regular clrblack' color="primary">خانه</Button>
-
-                                <Button
+                            <Grid xs={5} sx={{display: 'flex' , alignItems:'center'}}>
 
 
-                               className='underline yekan-regular' color="primary">نام شخص</Button>
+
+                                <Typography component='p' className='yekan-regular clrtwotext'>
+                                    {
+                                        user.user.name ? user.user.name : user.user.phone ? user.user.phone:'کارجو'
+                                    }
+                                    {' '}
+                                    عزیز به سیستم رهگیری استخدام افق ایرانیان خوش آمدید.
+
+                                </Typography>
+
+
 
 
                             </Grid>
@@ -189,16 +198,14 @@ const Navbar = (props) => {
 
                             <Grid xs={5} sx={{display: 'flex', justifyContent: 'end'}}>
 
-                                <Button onClick={() => nav('/')} className='underline yekan-regular clrblack' color="primary">
+                                <Button onClick={() => nav('/')} className='underline yekan-regular clrblack'
+                                        color="primary">
 
 
                                     خروج
                                     <Logout/>
                                 </Button>
                             </Grid>
-
-
-
 
 
                         </Grid>

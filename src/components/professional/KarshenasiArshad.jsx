@@ -108,7 +108,7 @@ const Karshenasiarshad = () => {
                                         مقطع کارشناسی ارشد
                                     </Typography>
                                     {
-                                        user.education1 !==false &&   <DoneOutline className='clrtwotext' sx={{ mr:3}}/>
+                                        user.education3 !==false &&   <DoneOutline className='clrtwotext' sx={{ mr:3}}/>
                                     }
 
                                 </AccordionSummary>

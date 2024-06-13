@@ -36,7 +36,10 @@ const Departement = () => {
 
         getDepartments()
         // adding users depatment if it has alreadybeen chosen before
-        setDep(user.user.departemant)
+        if (user.user.departemant) {
+            setDep(user.user.departemant)
+        }
+
 
 
     }, []);
