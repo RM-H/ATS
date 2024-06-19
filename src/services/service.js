@@ -65,3 +65,9 @@ export const savePhd = (education) => {
 export const saveWorks = (works) => {
   return axios.post(`${url}/saveworks`,works)
 }
+
+
+// users skill questions
+export const saveQuestions = (questions) => {
+  return axios.post(`${url}/savequestions`,questions)
+}

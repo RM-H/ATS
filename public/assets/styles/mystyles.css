@@ -102,6 +102,20 @@ body {
 
 
 
+@keyframes blink {
+    0% {
+        color: black;
+    }
+    50% {
+        color: hsl(123.04deg 46.2% 33.53%);
+    }
+    100% {
+        color: black;
+    }
+}
+
+
+
 /*-------------------------*/
 /*   margins and padding   */
 /*-------------------------*/

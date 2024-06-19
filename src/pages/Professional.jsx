@@ -17,10 +17,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {workselector, userselector, setuser, setstep} from "../slices/userSlice.js";
 import {saveWorks} from '../services/service.js'
 import {toast} from "react-toastify";
+import {useNavigate} from "react-router-dom";
 
 
 const Professional = () => {
-
+    const nav = useNavigate()
     // controlling loading
 
     const [loading, setLoading] = useState(false)
@@ -65,7 +66,8 @@ const Professional = () => {
             dispatch(setstep(4))
             dispatch(setuser(response.data))
             setLoading(false)
-            console.log(response.data)
+            nav('/ats/evaluation')
+
 
         } else {
             setLoading(false)

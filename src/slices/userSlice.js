@@ -6,7 +6,8 @@ const todosSlice = createSlice({
         {
             step: 0,
             user: null,
-            work: []
+            work: [],
+            questionsdraft: []
         }
 
     ,
@@ -27,28 +28,55 @@ const todosSlice = createSlice({
             state.work[action.payload.index].end_date = action.payload.end_date;
             state.work[action.payload.index].working = action.payload.working;
 
-        } ,
-        deleteWorkitem : (state,action)=>{
+        },
+        deleteWorkitem: (state, action) => {
 
             const workitems = current(state.work)
 
-            const filtered = workitems.filter((item)=>{
-                return item.company !=action.payload
+            const filtered = workitems.filter((item) => {
+                return item.company != action.payload
 
 
             })
-            state.work=filtered
+            state.work = filtered
 
 
+        },
 
+        addskilldraft: (state, action) => {
 
+            let itemsarray = []
+            action.payload.map((i) => {
+                itemsarray.push({
+                    question: i,
+                    value: null
+                })
+            })
+            state.questionsdraft=itemsarray
+        }
+        ,
+
+        addvaluetoskill: (state, action) => {
+            let item = state.questionsdraft.findIndex((item) => {
+                return item.question == action.payload.q
+            })
+            state.questionsdraft[item].value = action.payload.v
+            console.log(item)
         }
 
 
     }
 })
 
-export const {setstep, setuser, setwork, updatework, deleteWorkitem} = todosSlice.actions
+export const {
+    setstep,
+    setuser,
+    setwork,
+    updatework,
+    deleteWorkitem,
+    addskilldraft,
+    addvaluetoskill
+} = todosSlice.actions
 
 export const stepselector = createSelector(
     state => state.user,
@@ -63,5 +91,9 @@ export const userselector = createSelector(
 export const workselector = createSelector(
     state => state.user,
     (state) => state.work
+)
+export const skilldraftselector = createSelector(
+    state => state.user,
+    (state) => state.questionsdraft
 )
 export default todosSlice.reducer

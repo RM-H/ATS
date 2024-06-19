@@ -14,3 +14,8 @@ export {default as KarshenasiArshad} from './professional/KarshenasiArshad.jsx'
 export {default as Phd} from './professional/Phd.jsx'
 
 
+
+// ---------------------questions----------------------//
+export {default as Questionitem} from './questions/Skillquestionitem.jsx'
+
+
