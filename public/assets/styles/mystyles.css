@@ -62,6 +62,10 @@ body {
     color: #FF4941;
 }
 
+.clrseventext {
+    color: #FFFFff;
+}
+
 
 
 
@@ -112,7 +116,8 @@ body {
     100% {
         color: black;
     }
-}
+    }
+
 
 
 

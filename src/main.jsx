@@ -5,7 +5,7 @@ import Mainlayout from './Layouts/Mainlayout.jsx'
 import {createBrowserRouter,RouterProvider} from "react-router-dom";
 import { Provider } from 'react-redux'
 import {store} from "./store/store.js";
-import {Persnalinfo,Education,Professional,Department,Login,Questions} from './pages/index.js'
+import {Persnalinfo,Education,Professional,Department,Login,Questions,Status} from './pages/index.js'
 const router = createBrowserRouter([
     {
         path: "/ats",
@@ -36,6 +36,11 @@ const router = createBrowserRouter([
             {
                 path:'/ats/evaluation' ,
                 element:<Questions/>
+
+            },
+            {
+                path:'/ats/status' ,
+                element:<Status/>
 
             }
 

@@ -10,13 +10,14 @@ import {Questionitem,Spinner} from '../components/index.js'
 import {useSelector,useDispatch} from "react-redux";
 import {userselector, addskilldraft, skilldraftselector, setuser,setstep} from "../slices/userSlice.js";
 import {Button} from "@mui/material";
+import {useNavigate} from "react-router-dom";
 
 
 
 
 
 const SpecificQuestions = () => {
-
+    const nav = useNavigate()
     const dispatch = useDispatch()
 
     const [data,setData] = useState(false)
@@ -69,6 +70,7 @@ const SpecificQuestions = () => {
             dispatch(setuser(response.data));
             dispatch(setstep(5))
             toast.success('پاسخ های شما دریافت شد')
+            nav('/ats/status')
         } else {
             toast.warning(response.data.error)
         }
