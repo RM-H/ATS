@@ -1,25 +1,36 @@
 import Grid from "@mui/material/Unstable_Grid2";
 import {useState} from 'react'
-import {Typography, Modal, Button, Divider} from "@mui/material";
+import {
+    Typography,
+    Modal,
+    Button,
+    Divider,
+    Box
 
+} from "@mui/material";
+import {useSelector} from "react-redux";
+import {userselector} from "../slices/userSlice.js";
 
 
 const Status = () => {
+
+    const user = useSelector(userselector)
+
+
     // handling modal show
     const [open, setOpen] = useState(false)
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+
     return (
         <>
             <Grid container className='margins' sx={{
-                height: '100vh',
+
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                backgroundImage: 'url(/assets/images/wallpaper.jpg)',
-                backgroundSize: 'auto',
-                backgroundRepeat: 'no-repeat'
+
             }}>
                 <Grid className='shadowone' xs={9} sx={{
                     display: 'flex',
@@ -39,6 +50,11 @@ const Status = () => {
                     <Button onClick={handleOpen} className='yekan-regular' variant='contained'>
                         نمایش رزومه
                     </Button>
+                    <button onClick={() => {
+                        console.log(user)
+                    }}>
+                        test
+                    </button>
 
 
                 </Grid>
@@ -70,17 +86,49 @@ const Status = () => {
                             </Typography>
 
 
-                            <Typography component='p' className='yekan-regular' variant='body2'>
-                                نام : شسی
+                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                نام :
+                                {user.user.name}
                             </Typography>
 
-                            <Typography component='p' className='yekan-regular' variant='body2'>
-                                نام خانوادگی : شسی
+                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                نام خانوادگی :
+
+                                {user.user.family}
                             </Typography>
 
 
-                            <Typography component='p' className='yekan-regular' variant='body2'>
-                                نام : شسی
+                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                تاریخ تولد :
+
+                                {user.user.birth}
+                            </Typography>
+
+
+                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                ایمیل :
+
+                                {user.user.email}
+                            </Typography>
+
+                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                تاریخ تولد :
+
+                                {user.user.birth}
+                            </Typography>
+
+
+                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                تاریخ ثبت نام :
+
+                                {new Date(user.user.register_date * 1000).toLocaleDateString('fa-IR')}
+                            </Typography>
+
+
+                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                آدرس :
+
+                                {user.user.address}
                             </Typography>
 
 
@@ -88,7 +136,6 @@ const Status = () => {
 
 
                         </Grid>
-
 
 
                         <Grid xs={6}>
@@ -97,23 +144,189 @@ const Status = () => {
                             </Typography>
 
 
-                            <Typography component='p' className='yekan-regular' variant='body2'>
-                                نام : شسی
-                            </Typography>
+                            {
+                                user.education1 && (
+                                    <>
+                                        <Box sx={{width: '50%', display: 'inline-block' , my:1}}>
+                                            <Typography component='p' className='yekan-regular' variant='body2'>
+                                                مقطع :
+                                                کاردانی
+                                            </Typography>
 
-                            <Typography component='p' className='yekan-regular' variant='body2'>
-                                نام خانوادگی : شسی
-                            </Typography>
+                                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                                رشته :
+                                                {user.education1.major}
+                                            </Typography>
+
+                                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                                دانشگاه :
+                                                {user.education1.university}
+                                            </Typography>
+
+                                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                                تاریخ شروع :
+                                                {new Date(user.education1.start).toLocaleDateString('fa-IR')}
+                                            </Typography>
 
 
-                            <Typography component='p' className='yekan-regular' variant='body2'>
-                                نام : شسی
-                            </Typography>
+                                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                                تاریخ پایان :
+                                                {new Date(user.education1.end).toLocaleDateString('fa-IR')}
+                                            </Typography>
+
+                                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                                در حال تحصیل :
+                                                {user.education1.studying ? 'بله' : 'نخیر'}
+                                            </Typography>
+
+
+                                        </Box>
+
+
+                                    </>
+                                )
+                            }
+
+                            {
+                                user.education2 && (
+                                    <>
+
+
+                                        <Box sx={{width: '50%', display: 'inline-block' , my:1}}>
+                                            <Typography component='p' className='yekan-regular' variant='body2'>
+                                                مقطع :
+                                                کارشناسی
+                                            </Typography>
+
+                                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                                رشته :
+                                                {user.education2.major}
+                                            </Typography>
+
+                                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                                دانشگاه :
+                                                {user.education2.university}
+                                            </Typography>
+
+                                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                                تاریخ شروع :
+                                                {new Date(user.education2.start).toLocaleDateString('fa-IR')}
+                                            </Typography>
+
+
+                                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                                تاریخ پایان :
+                                                {new Date(user.education2.end).toLocaleDateString('fa-IR')}
+                                            </Typography>
+
+                                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                                در حال تحصیل :
+                                                {user.education2.studying ? 'بله' : 'نخیر'}
+                                            </Typography>
+
+
+                                        </Box>
+
+
+                                    </>
+                                )
+                            }
+
+
+                            {
+                                user.education3 && (
+                                    <>
+
+                                        <Box sx={{width: '50%', display: 'inline-block' , my:1}}>
+                                            <Typography component='p' className='yekan-regular' variant='body2'>
+                                                مقطع :
+                                                کارشناسی ارشد
+                                            </Typography>
+
+                                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                                رشته :
+                                                {user.education3.major}
+                                            </Typography>
+
+                                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                                دانشگاه :
+                                                {user.education3.university}
+                                            </Typography>
+
+                                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                                تاریخ شروع :
+                                                {new Date(user.education3.start).toLocaleDateString('fa-IR')}
+                                            </Typography>
+
+
+                                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                                تاریخ پایان :
+                                                {new Date(user.education3.end).toLocaleDateString('fa-IR')}
+                                            </Typography>
+
+                                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                                در حال تحصیل :
+                                                {user.education3.studying ? 'بله' : 'نخیر'}
+                                            </Typography>
+
+
+                                        </Box>
+
+
+                                    </>
+                                )
+                            }
+
+
+                            {
+                                user.education4 && (
+                                    <>
+
+
+                                        <Box sx={{width: '50%', display: 'inline-block' , my:1}}>
+                                            <Typography component='p' className='yekan-regular' variant='body2'>
+                                                مقطع :
+                                                دکتری
+                                            </Typography>
+
+                                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                                رشته :
+                                                {user.education4.major}
+                                            </Typography>
+
+                                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                                دانشگاه :
+                                                {user.education4.university}
+                                            </Typography>
+
+                                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                                تاریخ شروع :
+                                                {new Date(user.education4.start).toLocaleDateString('fa-IR')}
+                                            </Typography>
+
+
+                                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                                تاریخ پایان :
+                                                {new Date(user.education4.end).toLocaleDateString('fa-IR')}
+                                            </Typography>
+
+                                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                                در حال تحصیل :
+                                                {user.education4.studying ? 'بله' : 'نخیر'}
+                                            </Typography>
+
+
+                                        </Box>
+
+
+                                    </>
+                                )
+                            }
+
 
                             <Divider/>
 
                         </Grid>
-
 
 
                         <Grid xs={6}>
@@ -146,19 +359,22 @@ const Status = () => {
                                 مهارت ها :
                             </Typography>
 
+                            {
+                                user.questions.map((item) => {
+                                    return (
+                                        <>
+                                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                                {item.question}
+                                            </Typography>
 
-                            <Typography component='p' className='yekan-regular' variant='body2'>
-                                نام : شسی
-                            </Typography>
+                                            <Typography component='p' className='yekan-regular' variant='overline'>
+                                                %{item.value * 20}
+                                            </Typography>
 
-                            <Typography component='p' className='yekan-regular' variant='body2'>
-                                نام خانوادگی : شسی
-                            </Typography>
-
-
-                            <Typography component='p' className='yekan-regular' variant='body2'>
-                                نام : شسی
-                            </Typography>
+                                        </>
+                                    )
+                                })
+                            }
 
 
                             <Divider/>

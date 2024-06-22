@@ -1,11 +1,10 @@
 import Grid from "@mui/material/Unstable_Grid2";
-import {Slider,Typography,Divider} from "@mui/material";
+import {Slider, Typography, Divider} from "@mui/material";
 import {useDispatch} from "react-redux";
 import {addvaluetoskill} from '../../slices/userSlice.js'
 
 
-
-const Skillquestionitem = ({question}) => {
+const Skillquestionitem = ({question, defualtval}) => {
     const dispatch = useDispatch()
 
     const marks = [
@@ -36,7 +35,8 @@ const Skillquestionitem = ({question}) => {
     ];
     return (
         <>
-            <Grid xs={12} sx={{my:3}}>
+            <Grid xs={12} sx={{my: 3}}>
+
 
                 <Typography component='p' variant='h6' className='yekan-regular'>
                     {question}
@@ -47,34 +47,31 @@ const Skillquestionitem = ({question}) => {
                     aria-label="Restricted values"
                     min={0}
                     max={5}
-                    defaultValue={3}
-                    // getAriaValueText={valuetext}
+                    defaultValue={defualtval !==null ? defualtval:3}
+
                     step={null}
                     valueLabelDisplay="auto"
                     marks={marks}
                     sx={{
-                        mt:3,
+                        mt: 3,
                         '& .MuiSlider-markLabel': {
                             fontFamily: 'yekan-reg'
-                        } ,
+                        },
                         '& .MuiSlider-thumb': {
-                            backgroundColor:'#4FE8E3'
-                        } ,
-                        '&.MuiSlider-colorPrimary':{
+                            backgroundColor: '#4FE8E3'
+                        },
+                        '&.MuiSlider-colorPrimary': {
                             color: ' #1B95A2'
                         }
                     }}
-                    onChange={(e)=>dispatch(addvaluetoskill({q:question,v:e.target.value}))}
+                    onChange={(e) => dispatch(addvaluetoskill({q: question, v: e.target.value}))}
 
                 />
 
 
-
-                <Divider sx={{mt:6}}/>
+                <Divider sx={{mt: 6}}/>
 
             </Grid>
-
-
 
 
         </>

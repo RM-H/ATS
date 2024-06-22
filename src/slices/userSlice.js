@@ -49,10 +49,13 @@ const todosSlice = createSlice({
             action.payload.map((i) => {
                 itemsarray.push({
                     question: i,
-                    value: null
+                    value: 3
                 })
             })
             state.questionsdraft=itemsarray
+        },
+        addexistingskilltodraft : (state,action)=>{
+            state.questionsdraft=action.payload
         }
         ,
 
@@ -75,7 +78,8 @@ export const {
     updatework,
     deleteWorkitem,
     addskilldraft,
-    addvaluetoskill
+    addvaluetoskill,
+    addexistingskilltodraft
 } = todosSlice.actions
 
 export const stepselector = createSelector(

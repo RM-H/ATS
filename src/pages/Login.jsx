@@ -66,6 +66,8 @@ const Login = () => {
               nav('/ats')
               toast.success('با موفقیت وارد شدید')
           } else {
+              setLoading(false)
+              setphoneentered(false)
              toast.warning(resp.data.error)
           }
 

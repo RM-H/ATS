@@ -22,7 +22,7 @@ const Steps = () => {
           <Grid container className='margins' sx={{pt:15}}>
 
               <Grid xs={12} sx={{pt:1}} >
-                  <LinearProgress className='shadowone' variant='determinate' color='success' value={step*16.6} sx={{transform:'rotateY(180deg)' , '&.MuiLinearProgress-root':{
+                  <LinearProgress className='shadowone' variant='determinate' color='success' value={step*20} sx={{transform:'rotateY(180deg)' , '&.MuiLinearProgress-root':{
                       height:'0.9rem' ,
                           backgroundColor: 'rgba(115,115,117,0.44)'
                       } , '& .MuiLinearProgress-bar ':{
@@ -51,11 +51,11 @@ const Steps = () => {
                               <Work/>
                           </IconButton> } label={<span className='yekan-regular'>سوابق کاری </span>} />
 
-                          <FormControlLabel disabled={step >=5? false:true} defaultChecked   control={<IconButton onClick={()=>nav('/professional')} color='success'>
+                          <FormControlLabel disabled={step >=5? false:true} defaultChecked   control={<IconButton onClick={()=>nav('/ats/evaluation')} color='success'>
                               <Quiz/>
                           </IconButton> } label={<span className='yekan-regular'>مهارت های تخصصی</span>} />
 
-                          <FormControlLabel disabled={step >=6? false:true} defaultChecked   control={<IconButton onClick={()=>nav('/professional')} color='success'>
+                          <FormControlLabel disabled={step >=5? false:true} defaultChecked   control={<IconButton onClick={()=>nav('/ats/status')} color='success'>
                               <ConnectWithoutContact/>
                           </IconButton> } label={<span className='yekan-regular'>وضعیت</span>} />
 
