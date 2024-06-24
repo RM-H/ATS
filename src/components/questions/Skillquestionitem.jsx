@@ -14,19 +14,19 @@ const Skillquestionitem = ({question, defualtval}) => {
         },
         {
             value: 1,
-            label: 'مهارت کم',
+            label: '20%',
         },
         {
             value: 2,
-            label: 'مهارت نسبی',
+            label: '40%',
         },
         {
             value: 3,
-            label: 'مهارت متوسط',
+            label: '60%',
         },
         {
             value: 4,
-            label: 'مهارت زیاد',
+            label: '80%',
         },
         {
             value: 5,
@@ -50,7 +50,7 @@ const Skillquestionitem = ({question, defualtval}) => {
                     defaultValue={defualtval !==null ? defualtval:3}
 
                     step={null}
-                    valueLabelDisplay="auto"
+
                     marks={marks}
                     sx={{
                         mt: 3,

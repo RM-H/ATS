@@ -17,7 +17,7 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import {Spinner} from "../index.js";
 import {useEffect, useState} from "react";
-import { savePhd} from '../../services/service.js'
+import {savePhd} from '../../services/service.js'
 import {useDispatch, useSelector} from "react-redux";
 import {setuser, userselector} from "../../slices/userSlice.js";
 import {toast} from "react-toastify";
@@ -39,7 +39,7 @@ const Phd = () => {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        if (user.education4 && user.education4 !==false){
+        if (user.education4 && user.education4 !== false) {
             setstartDate(user.education4.start)
             setendDate(user.education4.end)
             setStudying(user.education4.studying)
@@ -66,7 +66,7 @@ const Phd = () => {
         formdata.append('data', JSON.stringify(data))
         setLoading(true)
         let response = await savePhd(formdata)
-        if (response.data.code==1) {
+        if (response.data.code == 1) {
             toast.success('با موفقیت ثبت شد')
             setLoading(false)
             dispatch(setuser(response.data))
@@ -84,7 +84,11 @@ const Phd = () => {
 
             <Grid xs={12} sx={{my: 2}}>
 
-                <Formik initialValues={{major: user.education4 !==false ? user.education4.major:'', university: user.education4 !==false ? user.education4.university:'', average: user.education4 !==false ? user.education4.average:''}}
+                <Formik initialValues={{
+                    major: user.education4 !== false ? user.education4.major : '',
+                    university: user.education4 !== false ? user.education4.university : '',
+                    average: user.education4 !== false ? user.education4.average : ''
+                }}
                         validationSchema={Yup.object().shape({
 
                             major: Yup.string().max(100, 'به درستی وارد نشده').required('ضروری'),
@@ -108,13 +112,13 @@ const Phd = () => {
                                         مقطع دکتری
                                     </Typography>
                                     {
-                                        user.education4 !==false &&   <DoneOutline className='clrtwotext' sx={{ mr:3}}/>
+                                        user.education4 !== false && <DoneOutline className='clrtwotext' sx={{mr: 3}}/>
                                     }
 
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Grid container spacing={4}>
-                                        <Grid xs={4}>
+                                        <Grid xs={12} md={4}>
                                             <FormControl className='w100' variant="outlined">
 
                                                 <span className='yekan-regular'> رشته - گرایش  :  </span>
@@ -127,7 +131,7 @@ const Phd = () => {
                                         </Grid>
 
 
-                                        <Grid xs={4}>
+                                        <Grid xs={12} md={4}>
                                             <FormControl className='w100' variant="outlined">
 
                                                 <span className='yekan-regular'> دانشگاه  :  </span>
@@ -145,8 +149,9 @@ const Phd = () => {
                                             </FormControl>
                                         </Grid>
 
-                                        <Grid xs={4} sx={{
+                                        <Grid xs={12} md={4} sx={{
                                             display: 'flex',
+                                            flexDirection: 'column',
                                             alignItems: 'center',
                                             justifyContent: 'space-around'
                                         }}>
@@ -163,8 +168,9 @@ const Phd = () => {
                                                         value={startdate}/>
                                         </Grid>
 
-                                        <Grid xs={4} sx={{
+                                        <Grid xs={12} md={4} sx={{
                                             display: 'flex',
+                                            flexDirection: 'column',
                                             alignItems: 'center',
                                             justifyContent: 'space-around'
                                         }}>
@@ -176,7 +182,8 @@ const Phd = () => {
                                                 fontSize: '1rem',
                                                 padding: '1rem',
                                                 textAlign: 'center'
-                                            }} className='yekan-regular' onChange={setendDate} calendar={persian} value={enddate}
+                                            }} className='yekan-regular' onChange={setendDate} calendar={persian}
+                                                        value={enddate}
                                                         locale={persian_fa}
                                             />
                                             <FormControlLabel
@@ -184,7 +191,7 @@ const Phd = () => {
                                                 label={<span className='yekan-regular '>مشغول به تحصیل </span>}/>
                                         </Grid>
 
-                                        <Grid xs={4}>
+                                        <Grid xs={12} md={4}>
                                             <FormControl className='w100' variant="outlined">
 
                                                 <span className='yekan-regular'> معدل  :  </span>
@@ -203,7 +210,7 @@ const Phd = () => {
                                             </FormControl>
                                         </Grid>
 
-                                        <Grid xs={4}>
+                                        <Grid xs={12} >
 
                                             {
                                                 loading ? <Spinner/> :

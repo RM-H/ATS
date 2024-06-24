@@ -125,7 +125,7 @@ const Kardani = () => {
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Grid container spacing={4}>
-                                        <Grid xs={4}>
+                                        <Grid xs={12}  md={4}>
                                             <FormControl className='w100' variant="outlined">
 
                                                 <span className='yekan-regular'> رشته - گرایش  :  </span>
@@ -138,7 +138,7 @@ const Kardani = () => {
                                         </Grid>
 
 
-                                        <Grid xs={4}>
+                                        <Grid xs={12}  md={4}>
                                             <FormControl className='w100' variant="outlined">
 
                                                 <span className='yekan-regular'> دانشگاه  :  </span>
@@ -156,12 +156,13 @@ const Kardani = () => {
                                             </FormControl>
                                         </Grid>
 
-                                        <Grid xs={4} sx={{
+                                        <Grid xs={12}  md={4} sx={{
                                             display: 'flex',
+                                            flexDirection:'column',
                                             alignItems: 'center',
                                             justifyContent: 'space-around'
                                         }}>
-                                            <span className='yekan-regular'> تاریخ شروع :  </span>
+                                            <span className='yekan-regular'> تاریخ شروع:</span>
 
 
                                             <DatePicker style={{
@@ -174,12 +175,13 @@ const Kardani = () => {
                                                         value={startdate}/>
                                         </Grid>
 
-                                        <Grid xs={4} sx={{
+                                        <Grid xs={12}  md={4} sx={{
                                             display: 'flex',
+                                            flexDirection:'column',
                                             alignItems: 'center',
                                             justifyContent: 'space-around'
                                         }}>
-                                            <span className='yekan-regular'> تاریخ پایان :  </span>
+                                            <span className='yekan-regular'> تاریخ پایان:  </span>
 
 
                                             <DatePicker disabled={studying} style={{
@@ -190,12 +192,15 @@ const Kardani = () => {
                                             }} className='yekan-regular' onChange={setendDate} calendar={persian}
                                                         locale={persian_fa} value={enddate}
                                             />
+
+                                        </Grid>
+                                        <Grid xs={12} md={4}>
                                             <FormControlLabel
                                                 control={<Checkbox checked={studying} onChange={() => setStudying((prev) => !prev)}/>}
                                                 label={<span className='yekan-regular '>مشغول به تحصیل </span>}/>
                                         </Grid>
 
-                                        <Grid xs={4}>
+                                        <Grid xs={12}  md={4}>
                                             <FormControl className='w100' variant="outlined">
 
                                                 <span className='yekan-regular'> معدل  :  </span>
@@ -214,7 +219,7 @@ const Kardani = () => {
                                             </FormControl>
                                         </Grid>
 
-                                        <Grid xs={4}>
+                                        <Grid xs={12}  md={12}>
 
                                             {
                                                 loading ? <Spinner/> :

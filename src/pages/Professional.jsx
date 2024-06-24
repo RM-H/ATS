@@ -14,7 +14,7 @@ import {
 import {useEffect, useState} from "react";
 import {Workitem, Spinner} from '../components/index.js'
 import {useDispatch, useSelector} from "react-redux";
-import {workselector, userselector, setuser, setstep} from "../slices/userSlice.js";
+import {workselector, userselector, setuser, setstep,setwork,resetWorkdraft} from "../slices/userSlice.js";
 import {saveWorks} from '../services/service.js'
 import {toast} from "react-toastify";
 import {useNavigate} from "react-router-dom";
@@ -40,9 +40,11 @@ const Professional = () => {
     useEffect(() => {
         if (user.works !==false){
 
+
             let items =[]
             user.works.map((item)=>{
-                items.push(item.company)
+                items.push(item.company);
+                dispatch(setwork(item))
 
             })
             setFileds(items)
@@ -65,6 +67,7 @@ const Professional = () => {
             toast.success('سوابق شغلی با موفقیت اضافه شد.')
             dispatch(setstep(4))
             dispatch(setuser(response.data))
+           dispatch(resetWorkdraft())
             setLoading(false)
             nav('/ats/evaluation')
 
@@ -82,21 +85,6 @@ const Professional = () => {
     const [fields, setFileds] = useState([])
 
 
-    const validationSchema = yup.object({
-
-        firstName: yup.string().max(25, 'نام بصورت صحیح وارد نشده').required('ضروری'),
-        lastName: yup.string().max(40, ' باید کوتاه تر باشد').required('ضروری'),
-
-        email: yup.string().email().required('ضروری'),
-        service: yup.number().required('ضروری'),
-        maritalStatus: yup.number().required('ضروری'),
-        nationality: yup.string().max(50, ' باید کوتاه تر باشد').required('ضروری'),
-
-        about: yup.string().max(500, ' باید کوتاه تر باشد').required('ضروری'),
-        address: yup.string().max(500, ' باید کوتاه تر باشد').required('ضروری'),
-        tel: yup.string().matches(/^[0-9]+$/, 'فقط عدد').length(11, 'شماره درست وارد نشده است').required('ضروری')
-
-    });
 
 
     const addnewfield = useFormik({

@@ -21,6 +21,10 @@ const todosSlice = createSlice({
         setwork: (state, action) => {
             state.work.push(action.payload)
         },
+        resetWorkdraft: (state) => {
+            state.work=[]
+        },
+
         updatework: (state, action) => {
             state.work[action.payload.index].jobtitle = action.payload.jobtitle;
             state.work[action.payload.index].salary = action.payload.salary;
@@ -64,7 +68,7 @@ const todosSlice = createSlice({
                 return item.question == action.payload.q
             })
             state.questionsdraft[item].value = action.payload.v
-            console.log(item)
+
         }
 
 
@@ -79,7 +83,8 @@ export const {
     deleteWorkitem,
     addskilldraft,
     addvaluetoskill,
-    addexistingskilltodraft
+    addexistingskilltodraft,
+    resetWorkdraft
 } = todosSlice.actions
 
 export const stepselector = createSelector(

@@ -8,6 +8,7 @@ import {getSms,verifySmsCode} from '../services/service.js'
 import {toast, ToastContainer} from "react-toastify";
 import {useDispatch} from "react-redux";
 import {setuser,setstep} from '../slices/userSlice.js'
+import axios from "axios";
 
 
 const Login = () => {
@@ -45,7 +46,7 @@ const Login = () => {
             form.append('code',v.code);
             setLoading(true)
             let resp = await verifySmsCode(form)
-            console.log(resp.data)
+
 
           if (resp.data.code===1){
 
@@ -76,12 +77,31 @@ const Login = () => {
     }
 
 
+
+
+    const developementgetdata = async () => {
+        const formdata = new FormData()
+        formdata.append('token' , '6678fe58c7088')
+      const response = await axios.post('https://mis.ofoghiranianteam.ir/api/v1/ats/info',formdata)
+        if (response.data.code===1) {
+            dispatch(setuser(response.data))
+            nav('/ats')
+        }else {
+            console.log(response.data.error)
+        }
+    }
+
+
     return (
         <>
 
             <div
 
-                 style={{width: "100wv", height: '100vh' , display:'flex', justifyContent:'center' , alignItems:'center' , backgroundImage:'url(/assets/images/wallpaper.jpg)' , backgroundSize:'auto' , backgroundRepeat:'no-repeat'}}>
+                 style={{width: "100wv", height: '100vh' , display:'flex', justifyContent:'center' , alignItems:'center' , backgroundImage:'url(/assets/images/wallpaper.jpg)' , backgroundSize:'cover' , backgroundRepeat:'no-repeat'}}>
+
+                <button onClick={developementgetdata}>
+                    dev
+                </button>
 
 
 

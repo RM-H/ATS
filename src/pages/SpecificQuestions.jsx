@@ -44,6 +44,7 @@ const SpecificQuestions = () => {
             if (user.questions != false) {
                 let testdata = []
                 testdata[0] = user.questions
+                dispatch(addexistingskilltodraft(user.questions))
 
                 setData(testdata)
 
@@ -54,7 +55,7 @@ const SpecificQuestions = () => {
                         return item.code == user.user.departemant
                     }
                 )
-                console.log(filtered)
+
 
 
                 // adding items to skill draft in redux

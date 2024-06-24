@@ -298,3 +298,30 @@ body {
     100% {transform: rotate(360deg) translate(1.3rem)
     }}
 
+
+
+
+
+/*-------------------------*/
+/*        responsive       */
+/*-------------------------*/
+
+/*mobile*/
+@media screen and (max-width:430px) {
+    .margins {
+        padding-right: 3rem;
+        padding-left: 3rem;
+    }
+
+}
+
+/*tablets*/
+@media screen and (min-width: 431px) and (max-width:1025px) {
+    .margins {
+        padding-right: 3rem;
+        padding-left: 3rem;
+    }
+
+}
+
+

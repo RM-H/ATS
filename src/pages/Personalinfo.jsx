@@ -127,7 +127,7 @@ const Personalinfo = () => {
                     <form onSubmit={formik.handleSubmit} className='yekan-regular'>
                         <Grid container columnSpacing={3} rowSpacing={5}
                               sx={{'& .MuiInputBase-root': {fontFamily: 'yekan-reg'}}}>
-                            <Grid xs={6}>
+                            <Grid xs={12} sm={12} md={6}>
                                 <FormControl className='w100 yekan-regular' variant="outlined">
 
                                     <span className='yekan-regular'> نام  :  </span>
@@ -151,7 +151,7 @@ const Personalinfo = () => {
                                 </FormControl>
                             </Grid>
 
-                            <Grid xs={6}>
+                            <Grid xs={12} sm={12} md={6}>
                                 <FormControl className='w100' variant="outlined">
 
                                     <span className='yekan-regular'> نام خانوادگی :  </span>
@@ -174,7 +174,7 @@ const Personalinfo = () => {
                             </Grid>
 
 
-                            <Grid xs={4} sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
+                            <Grid xs={12} sm={12} md={4} sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
 
 
                                 <span className='yekan-regular'> تاریخ تولد :  </span>
@@ -192,7 +192,7 @@ const Personalinfo = () => {
 
                             </Grid>
 
-                            <Grid xs={4}>
+                            <Grid xs={12} sm={12} md={4}>
                                 <FormControl className='w100' variant="outlined">
 
                                     <span className='yekan-regular'> شماره ثابت :  </span>
@@ -214,7 +214,7 @@ const Personalinfo = () => {
                                 </FormControl>
                             </Grid>
 
-                            <Grid xs={4}>
+                            <Grid xs={12} sm={12} md={4}>
                                 <FormControl className='w100' variant="outlined">
 
                                     <span className='yekan-regular'> ایمیل :  </span>
@@ -237,7 +237,7 @@ const Personalinfo = () => {
                                 </FormControl>
                             </Grid>
 
-                            <Grid xs={10}>
+                            <Grid xs={12} sm={12} md={10}>
                                 <FormControl className='w100' variant="outlined">
 
                                     <span className='yekan-regular'> درباره من :  </span>
@@ -260,7 +260,7 @@ const Personalinfo = () => {
 
                                 </FormControl>
                             </Grid>
-                            <Grid xs={2}>
+                            <Grid xs={12} sm={12} md={2}>
                                 <FormControl className='w100' variant="outlined"
                                              sx={{alignItems: 'center', justifyContent: 'baseline'}}>
                                     <span className='yekan-regular'> تصویر :  </span>
@@ -275,7 +275,7 @@ const Personalinfo = () => {
                                 </FormControl>
                             </Grid>
 
-                            <Grid xs={12}>
+                            <Grid xs={12} sm={12} md={12}>
                                 <FormControl className='w100' variant="outlined">
 
                                     <span className='yekan-regular'> آدرس :  </span>
@@ -299,7 +299,7 @@ const Personalinfo = () => {
                                 </FormControl>
                             </Grid>
 
-                            <Grid xs={4}>
+                            <Grid xs={12} sm={12} md={4}>
                                 <FormControl className='w100' variant="outlined">
 
                                     <span className='yekan-regular'> ملیت :  </span>
@@ -322,7 +322,7 @@ const Personalinfo = () => {
                                 </FormControl>
                             </Grid>
 
-                            <Grid xs={4}>
+                            <Grid xs={12} sm={12} md={4}>
                                 <FormControl className='w100' variant="standard">
 
                                     <span className='yekan-regular'> وضعیت تاهل :  </span>
@@ -351,7 +351,7 @@ const Personalinfo = () => {
                                 </FormControl>
                             </Grid>
 
-                            <Grid xs={4}>
+                            <Grid xs={12} sm={12} md={4}>
                                 <FormControl className='w100' variant="standard">
 
                                     <span className='yekan-regular'> وضعیت نظام وظیفه :  </span>
@@ -382,7 +382,7 @@ const Personalinfo = () => {
                                 </FormControl>
                             </Grid>
 
-                            <Grid xs={12} sx={{textAlign: 'center'}}>
+                            <Grid xs={12} sm={12} md={12} sx={{textAlign: 'center'}}>
                                 {
                                     loading? <Spinner/> :<Button className='yekan-regular' type='submit' variant="contained">ادامه</Button>
                                 }

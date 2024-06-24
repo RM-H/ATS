@@ -25,7 +25,7 @@ const Status = () => {
 
     return (
         <>
-            <Grid container className='margins' sx={{
+            <Grid container sx={{
 
                 display: 'flex',
                 justifyContent: 'center',
@@ -42,7 +42,8 @@ const Status = () => {
                     backgroundColor: 'rgba(9,9,9,0.6)',
                     backdropFilter: 'blur(0.1rem)'
                 }}>
-                    <Typography component='p' variant='h4' className='yekan-regular clrseventext'>
+                    <Typography component='p' variant='h4' className='yekan-regular clrseventext'
+                                sx={{textAlign: 'center'}}>
                         رزومه شما در فلان وضعیت میباشد
                     </Typography>
 
@@ -50,11 +51,7 @@ const Status = () => {
                     <Button onClick={handleOpen} className='yekan-regular' variant='contained'>
                         نمایش رزومه
                     </Button>
-                    <button onClick={() => {
-                        console.log(user)
-                    }}>
-                        test
-                    </button>
+
 
 
                 </Grid>
@@ -147,7 +144,7 @@ const Status = () => {
                             {
                                 user.education1 && (
                                     <>
-                                        <Box sx={{width: '50%', display: 'inline-block' , my:1}}>
+                                        <Box sx={{width: '50%', display: 'inline-block', my: 1}}>
                                             <Typography component='p' className='yekan-regular' variant='body2'>
                                                 مقطع :
                                                 کاردانی
@@ -192,7 +189,7 @@ const Status = () => {
                                     <>
 
 
-                                        <Box sx={{width: '50%', display: 'inline-block' , my:1}}>
+                                        <Box sx={{width: '50%', display: 'inline-block', my: 1}}>
                                             <Typography component='p' className='yekan-regular' variant='body2'>
                                                 مقطع :
                                                 کارشناسی
@@ -237,7 +234,7 @@ const Status = () => {
                                 user.education3 && (
                                     <>
 
-                                        <Box sx={{width: '50%', display: 'inline-block' , my:1}}>
+                                        <Box sx={{width: '50%', display: 'inline-block', my: 1}}>
                                             <Typography component='p' className='yekan-regular' variant='body2'>
                                                 مقطع :
                                                 کارشناسی ارشد
@@ -283,7 +280,7 @@ const Status = () => {
                                     <>
 
 
-                                        <Box sx={{width: '50%', display: 'inline-block' , my:1}}>
+                                        <Box sx={{width: '50%', display: 'inline-block', my: 1}}>
                                             <Typography component='p' className='yekan-regular' variant='body2'>
                                                 مقطع :
                                                 دکتری
@@ -334,19 +331,46 @@ const Status = () => {
                                 سوابق کاری :
                             </Typography>
 
+                            {
+                                user.works && user.works.map((item , index)=>(
+                                    <Box key={index} sx={{width: '50%', display: 'inline-block', my: 1}}>
 
-                            <Typography component='p' className='yekan-regular' variant='body2'>
-                                نام : شسی
-                            </Typography>
+                                        <Typography component='p' className='yekan-regular' variant='body2'>
+                                            {item.company}
+                                        </Typography>
 
-                            <Typography component='p' className='yekan-regular' variant='body2'>
-                                نام خانوادگی : شسی
-                            </Typography>
+                                        <Typography component='p' className='yekan-regular' variant='overline'>
+                                            عنوان شغلی :
+                                            {item.title}
+                                        </Typography>
+
+                                        <Typography component='p' className='yekan-regular' variant='overline'>
+                                            تاریخ شروع :
+                                            {new Date(item.start_date).toLocaleDateString('fa-IR')}
+                                        </Typography>
+                                        <Typography component='p' className='yekan-regular' variant='overline'>
+                                            تاریخ پایان :
+                                            {new Date(item.end_date).toLocaleDateString('fa-IR')}
+                                        </Typography>
+
+                                        <Typography component='p' className='yekan-regular' variant='overline'>
+                                            حقوق دریافتی :
+                                            {item.salary}
+                                        </Typography>
 
 
-                            <Typography component='p' className='yekan-regular' variant='body2'>
-                                نام : شسی
-                            </Typography>
+
+
+                                    </Box>
+
+
+
+
+                                ))
+                            }
+
+
+
 
                             <Divider/>
 

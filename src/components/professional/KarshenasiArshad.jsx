@@ -114,7 +114,7 @@ const Karshenasiarshad = () => {
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Grid container spacing={4}>
-                                        <Grid xs={4}>
+                                        <Grid xs={12} md={4}>
                                             <FormControl className='w100' variant="outlined">
 
                                                 <span className='yekan-regular'> رشته - گرایش  :  </span>
@@ -127,7 +127,7 @@ const Karshenasiarshad = () => {
                                         </Grid>
 
 
-                                        <Grid xs={4}>
+                                        <Grid xs={12} md={4}>
                                             <FormControl className='w100' variant="outlined">
 
                                                 <span className='yekan-regular'> دانشگاه  :  </span>
@@ -145,12 +145,13 @@ const Karshenasiarshad = () => {
                                             </FormControl>
                                         </Grid>
 
-                                        <Grid xs={4} sx={{
+                                        <Grid xs={12} md={4} sx={{
                                             display: 'flex',
                                             alignItems: 'center',
+                                            flexDirection:'column',
                                             justifyContent: 'space-around'
                                         }}>
-                                            <span className='yekan-regular'> تاریخ شروع :  </span>
+                                            <span className='yekan-regular'> تاریخ شروع:  </span>
 
 
                                             <DatePicker style={{
@@ -163,12 +164,13 @@ const Karshenasiarshad = () => {
                                                         value={startdate}/>
                                         </Grid>
 
-                                        <Grid xs={4} sx={{
+                                        <Grid xs={12} md={4} sx={{
                                             display: 'flex',
+                                            flexDirection:'column',
                                             alignItems: 'center',
                                             justifyContent: 'space-around'
                                         }}>
-                                            <span className='yekan-regular'> تاریخ پایان :  </span>
+                                            <span className='yekan-regular'> تاریخ پایان:  </span>
 
 
                                             <DatePicker disabled={studying} style={{
@@ -179,12 +181,15 @@ const Karshenasiarshad = () => {
                                             }} className='yekan-regular' onChange={setendDate} calendar={persian} value={enddate}
                                                         locale={persian_fa}
                                             />
+
+                                        </Grid>
+                                        <Grid xs={12} md={4}>
                                             <FormControlLabel
                                                 control={<Checkbox onChange={() => setStudying((prev) => !prev)}/>}
                                                 label={<span className='yekan-regular '>مشغول به تحصیل </span>}/>
                                         </Grid>
 
-                                        <Grid xs={4}>
+                                        <Grid xs={12} md={4}>
                                             <FormControl className='w100' variant="outlined">
 
                                                 <span className='yekan-regular'> معدل  :  </span>
@@ -203,7 +208,7 @@ const Karshenasiarshad = () => {
                                             </FormControl>
                                         </Grid>
 
-                                        <Grid xs={4}>
+                                        <Grid xs={12} >
 
                                             {
                                                 loading ? <Spinner/> :

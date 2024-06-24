@@ -116,9 +116,7 @@ const Workitem = ({item, fields, setfields}) => {
         <>
 
             <Grid sx={{my: 3}} xs={12}>
-                <button onClick={()=>console.log(working)}>
-                    s
-                </button>
+
 
                 <Accordion defaultExpanded className='shadowone' sx={{p: 3}}>
                     <AccordionSummary
@@ -152,17 +150,17 @@ const Workitem = ({item, fields, setfields}) => {
                                 <Grid container spacing={4}>
 
 
-                                    <Grid xs={6}>
+                                    <Grid xs={12} md={6}>
                                         <label className="label">نام محل کار :</label>
                                         <Field className="input is-info" name='name' disabled/>
                                     </Grid>
 
-                                    <Grid xs={6}>
+                                    <Grid xs={12} md={6}>
                                         <label className="label">عنوان شغلی/پست :</label>
                                         <Field className="input is-info" name='jobtitle'/>
                                     </Grid>
 
-                                    <Grid xs={4}>
+                                    <Grid xs={12} md={4}>
                                         <label className="label">تاریخ شروع همکاری :</label>
                                         <DatePicker style={{
                                             fontFamily: 'yekan-reg',
@@ -174,7 +172,7 @@ const Workitem = ({item, fields, setfields}) => {
 
                                         />
                                     </Grid>
-                                    <Grid xs={4}>
+                                    <Grid xs={12} md={4}>
                                         <label className="label">تاریخ پایان همکاری :</label>
                                         <DatePicker disabled={working} style={{
                                             fontFamily: 'yekan-reg',
@@ -189,7 +187,7 @@ const Workitem = ({item, fields, setfields}) => {
                                             control={<Checkbox checked={working} onChange={() => setworking((prev) => !prev)}/>}
                                             label={<span className='yekan-regular'>مشغول به کار هسنم </span>}/>
                                     </Grid>
-                                    <Grid xs={4}>
+                                    <Grid xs={12} md={4}>
                                         <label className="label">حقوق :</label>
                                         <Field className="input is-info" name='salary'/>
                                     </Grid>
