@@ -19,7 +19,7 @@ import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import {useState} from "react";
 import {useDispatch, useSelector} from 'react-redux'
-import {setstep, userselector, setuser} from '../slices/userSlice.js'
+import {setstep, userselector, setuser, loadingSelector} from '../slices/userSlice.js'
 import {useNavigate} from 'react-router-dom'
 import {saveUserinfo, baseurl} from '../services/service.js'
 import {toast} from "react-toastify";
@@ -30,6 +30,7 @@ const Personalinfo = () => {
 
     const dispatch = useDispatch()
     const user = useSelector(userselector)
+    const reduxloading = useSelector(loadingSelector)
     const nav = useNavigate()
 
     // birthday
@@ -101,15 +102,15 @@ const Personalinfo = () => {
 
     const formik = useFormik({
         initialValues: {
-            firstName: user.user.name ? user.user.name : '',
-            lastName: user.user.family ? user.user.family : '',
-            email: user.user.email ? user.user.email : '',
-            service: user.user.soldier ? user.user.soldier : '',
-            maritalStatus: user.user.marriage ? user.user.marriage : '',
+            firstName: reduxloading===false && user.user.name ? user.user.name : '',
+            lastName:reduxloading===false && user.user.family ? user.user.family : '',
+            email:reduxloading===false && user.user.email ? user.user.email : '',
+            service:reduxloading===false && user.user.soldier ? user.user.soldier : '',
+            maritalStatus: reduxloading===false &&user.user.marriage ? user.user.marriage : '',
             nationality: '',
-            about: user.user.about ? user.user.about : '',
-            address: user.user.address ? user.user.address : '',
-            tel: user.user.tell ? user.user.tell : ''
+            about:reduxloading===false && user.user.about ? user.user.about : '',
+            address:reduxloading===false && user.user.address ? user.user.address : '',
+            tel:reduxloading===false && user.user.tell ? user.user.tell : ''
         },
         // validationSchema: validationSchema,
         onSubmit: (values) => {
@@ -264,7 +265,7 @@ const Personalinfo = () => {
                                 <FormControl className='w100' variant="outlined"
                                              sx={{alignItems: 'center', justifyContent: 'baseline'}}>
                                     <span className='yekan-regular'> تصویر :  </span>
-                                    <img src={img == '' ? `${baseurl}/${user.user.avatar}` : URL.createObjectURL(img)}
+                                    <img src={img == '' ? reduxloading===false && `${baseurl}/${user.user.avatar}` : URL.createObjectURL(img)}
                                          alt="avatar" width='31%'/>
 
                                     <input onChange={(e) => setImg(e.target.files[0])} className='yekan input'

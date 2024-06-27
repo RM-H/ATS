@@ -17,10 +17,11 @@ import {useState} from "react";
 import {Menu, Logout} from '@mui/icons-material'
 import {Link, useNavigate} from 'react-router-dom'
 import {useSelector} from "react-redux";
-import {userselector} from "../slices/userSlice.js";
+import {userselector,loadingSelector,} from "../slices/userSlice.js";
 
-const Navbar = (props) => {
+const Navbar = () => {
     const user = useSelector(userselector)
+    const loading = useSelector(loadingSelector)
 
 
     const nav = useNavigate()
@@ -75,7 +76,8 @@ const Navbar = (props) => {
 
                                 <Typography component='p' className='yekan-regular clrtwotext'>
                                     {
-                                        user.user.name ? user.user.name : user.user.phone ? user.user.phone:'کارجو'
+
+                                        loading===false ? user.user.name ? user.user.name : user.user.phone  : 'کارجو'
                                     }
                                     {' '}
                                     عزیز به سیستم رهگیری استخدام افق ایرانیان خوش آمدید.

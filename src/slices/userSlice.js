@@ -4,6 +4,7 @@ const todosSlice = createSlice({
     name: 'step',
     initialState:
         {
+            loading:true,
             step: 0,
             user: null,
             work: [],
@@ -12,6 +13,9 @@ const todosSlice = createSlice({
 
     ,
     reducers: {
+        setloading: (state, action) => {
+            state.loading = action.payload
+        },
         setstep: (state, action) => {
             state.step = action.payload
         },
@@ -76,6 +80,7 @@ const todosSlice = createSlice({
 })
 
 export const {
+    setloading,
     setstep,
     setuser,
     setwork,
@@ -90,6 +95,11 @@ export const {
 export const stepselector = createSelector(
     state => state.user,
     (state) => state.step
+)
+
+export const loadingSelector = createSelector(
+    state => state.user,
+    (state) => state.loading
 )
 
 export const userselector = createSelector(

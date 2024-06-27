@@ -26,6 +26,11 @@ export const getSplash = () => {
   return axios.get(`${url}/splash`)
 }
 
+// user info
+export const getUserinfo = (data) => {
+  return axios.post(`${url}/info`,data)
+}
+
 
 // department selection
 export const selectDepartment = (dep) => {

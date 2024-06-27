@@ -3,7 +3,7 @@ import {FormControl, InputLabel, MenuItem, Typography, Select, Paper, Button} fr
 import {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import {setstep, userselector, setuser} from '../slices/userSlice.js'
+import {setstep, userselector, setuser, loadingSelector} from '../slices/userSlice.js'
 import {toast} from 'react-toastify'
 import {Spinner} from '../components/index.js'
 
@@ -15,7 +15,7 @@ const Departement = () => {
 
 
     const user = useSelector(userselector)
-
+    const reduxloading = useSelector(loadingSelector)
 
     // storing splash data in state
     const [data, setData] = useState(false)
@@ -36,13 +36,13 @@ const Departement = () => {
 
         getDepartments()
         // adding users depatment if it has alreadybeen chosen before
-        if (user.user.departemant) {
+        if ( reduxloading===false && user.user.departemant) {
             setDep(user.user.departemant)
         }
 
 
 
-    }, []);
+    }, [reduxloading]);
 
 
     const [dep, setDep] = useState(false)
