@@ -14,10 +14,19 @@ import {
 import {useEffect, useState} from "react";
 import {Workitem, Spinner} from '../components/index.js'
 import {useDispatch, useSelector} from "react-redux";
-import {workselector, userselector, setuser, setstep,setwork,resetWorkdraft} from "../slices/userSlice.js";
-import {saveWorks} from '../services/service.js'
+import {
+    workselector,
+    userselector,
+    setuser,
+    setstep,
+    setwork,
+    resetWorkdraft,
+    setloading, loadingSelector
+} from "../slices/userSlice.js";
+import {getUserinfo, saveWorks} from '../services/service.js'
 import {toast} from "react-toastify";
 import {useNavigate} from "react-router-dom";
+import CryptoJS from "crypto-js";
 
 
 const Professional = () => {
@@ -31,27 +40,63 @@ const Professional = () => {
     const dispatch = useDispatch()
     // user info
     const user = useSelector(userselector)
+    const reduxloading = useSelector(loadingSelector)
+
+    // checking to see if user had already logged in before
+    useEffect(() => {
+        let user = localStorage.getItem('user')
+
+        if (user) {
+            let decrypt = JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('user'), 'ats').toString(CryptoJS.enc.Utf8));
 
 
+            const getuser = async () => {
+                dispatch(setloading(true))
+
+                const formdata = new FormData()
+                formdata.append('token', decrypt)
+                const response = await getUserinfo(formdata)
+                if (response.data.code == 1) {
+                    dispatch(setuser(response.data))
+                    nav('/ats/professional')
+
+
+                    dispatch(setloading(false))
+
+                } else {
+                    dispatch(setloading(false))
+
+                    toast.warning(response.data.error)
+                    nav('/')
+                }
+            }
+            getuser().then()
+
+
+        } else {
+            toast.warning('لطفا ابتدا وارد سیستم شوید.')
+            nav('/')
+        }
+
+
+    }, []);
 
 
     // adding work items to fields
 
     useEffect(() => {
-        if (user.works !==false){
+        if (reduxloading === false && user.works) {
 
 
-            let items =[]
-            user.works.map((item)=>{
+            let items = []
+            user.works.map((item) => {
                 items.push(item.company);
                 dispatch(setwork(item))
 
             })
             setFileds(items)
         }
-    }, []);
-
-
+    }, [user]);
 
 
     const handleNext = async () => {
@@ -67,7 +112,7 @@ const Professional = () => {
             toast.success('سوابق شغلی با موفقیت اضافه شد.')
             dispatch(setstep(4))
             dispatch(setuser(response.data))
-           dispatch(resetWorkdraft())
+            dispatch(resetWorkdraft())
             setLoading(false)
             nav('/ats/evaluation')
 
@@ -83,8 +128,6 @@ const Professional = () => {
 
     // adding a new form for professional history
     const [fields, setFileds] = useState([])
-
-
 
 
     const addnewfield = useFormik({
@@ -105,8 +148,6 @@ const Professional = () => {
         },
     });
     const handleadd = (val) => {
-
-
 
 
         let copy = [...fields, val.title];
@@ -130,6 +171,8 @@ const Professional = () => {
                 )
             }
         )
+    } else {
+        content = <Spinner/>
     }
 
 
@@ -138,11 +181,13 @@ const Professional = () => {
 
 
             <Grid container className='margins' sx={{'& .MuiInputBase-root': {fontFamily: 'yekan-reg'}}}>
-
+                <button onClick={() => console.log(fields)}>
+                    test
+                </button>
 
 
                 {
-                    content
+                    reduxloading ? <Spinner/> : content
                 }
 
 

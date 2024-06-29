@@ -3,11 +3,12 @@ import {FormControl, InputLabel, MenuItem, Typography, Select, Paper, Button} fr
 import {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import {setstep, userselector, setuser, loadingSelector} from '../slices/userSlice.js'
+import {setstep, userselector, setuser, loadingSelector, setloading} from '../slices/userSlice.js'
 import {toast} from 'react-toastify'
 import {Spinner} from '../components/index.js'
 
-import {getSplash, selectDepartment} from '../services/service.js'
+import {getSplash, getUserinfo, selectDepartment} from '../services/service.js'
+import CryptoJS from "crypto-js";
 
 const Departement = () => {
     const dispatch = useDispatch()
@@ -23,6 +24,44 @@ const Departement = () => {
 
     // loading animation
     const [loading, setLoading] = useState(false)
+
+
+
+    // checking to see if user had already logged in before
+    useEffect(() => {
+        let user = localStorage.getItem('user')
+
+        if (user) {
+            let decrypt = JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('user'), 'ats').toString(CryptoJS.enc.Utf8));
+
+
+
+            const getuser = async () => {
+                dispatch(setloading(true))
+                const formdata = new FormData()
+                formdata.append('token' , decrypt)
+                const response = await getUserinfo(formdata)
+                if (response.data.code==1) {
+                    dispatch(setuser(response.data))
+                    nav('/ats')
+                    dispatch(setloading(false))
+                } else {
+                    dispatch(setloading(false))
+                    toast.warning(response.data.error)
+                    nav('/')
+                }
+            }
+            getuser()
+
+
+        } else {
+            toast.warning('لطفا ابتدا وارد سیستم شوید.')
+            nav('/')
+        }
+
+
+
+    }, []);
 
 
     const getDepartments = async () => {

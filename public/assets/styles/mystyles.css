@@ -7,7 +7,6 @@
 }
 
 
-
 .Toastify__toast-body {
     font-family: yekan-reg;
 }
@@ -18,6 +17,24 @@
 }
 
 
+.columns {
+    margin: 0;
+}
+
+
+@page {
+    size: A4 ;
+    margin: 10mm;
+
+}
+
+/* Print background graphics */
+@media print {
+    body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
 
 
 /*-------------------------*/
@@ -32,7 +49,6 @@ body {
 }
 
 
-
 .main-cantainer {
     width: 100%;
     min-height: 100vh;
@@ -42,12 +58,15 @@ body {
 .clrone {
     background-color: #4FE8E3 !important;
 }
+
 .clrtwo {
     background-color: #1B95A2;
 }
+
 .clrtwotext {
     color: #1B95A2;
 }
+
 .clrthree {
     background-color: #737375;
 }
@@ -55,9 +74,11 @@ body {
 .clrfour {
     background-color: #E1C886;
 }
+
 .clrfive {
     background-color: #AB9D7C;
 }
+
 .clrsixtext {
     color: #FF4941;
 }
@@ -66,8 +87,9 @@ body {
     color: #FFFFff;
 }
 
-
-
+.clreight {
+    background-color: #f2f1ec;
+}
 
 
 /*-------------------------*/
@@ -105,7 +127,6 @@ body {
 }
 
 
-
 @keyframes blink {
     0% {
         color: black;
@@ -116,9 +137,7 @@ body {
     100% {
         color: black;
     }
-    }
-
-
+}
 
 
 /*-------------------------*/
@@ -131,7 +150,6 @@ body {
 }
 
 
-
 /*-------------------------*/
 /*  shadows   */
 /*-------------------------*/
@@ -139,11 +157,6 @@ body {
     box-shadow: 0.3rem 0.3rem 0.6rem 0px rgba(0, 0, 0, 0.5) !important;
 
 }
-
-
-
-
-
 
 
 /*-------------------------*/
@@ -163,7 +176,6 @@ body {
 .main-login #chk {
     display: none;
 }
-
 
 
 .main-login .signup {
@@ -262,8 +274,6 @@ body {
 }
 
 
-
-
 /*-------------------------*/
 /*  spinner                */
 /*-------------------------*/
@@ -279,6 +289,7 @@ body {
     background: #36B786;
     position: relative;
 }
+
 .loader:before,
 .loader:after {
     content: "";
@@ -291,15 +302,16 @@ body {
     transform: rotate(0deg) translate(1.3rem);
     animation: rotate 1.5s ease infinite;
 }
+
 .loader:after {
     animation-delay: 0.5s
 }
+
 @keyframes rotate {
-    100% {transform: rotate(360deg) translate(1.3rem)
-    }}
-
-
-
+    100% {
+        transform: rotate(360deg) translate(1.3rem)
+    }
+}
 
 
 /*-------------------------*/
@@ -307,7 +319,7 @@ body {
 /*-------------------------*/
 
 /*mobile*/
-@media screen and (max-width:430px) {
+@media screen and (max-width: 430px) {
     .margins {
         padding-right: 3rem;
         padding-left: 3rem;
@@ -316,7 +328,7 @@ body {
 }
 
 /*tablets*/
-@media screen and (min-width: 431px) and (max-width:1025px) {
+@media screen and (min-width: 431px) and (max-width: 1025px) {
     .margins {
         padding-right: 3rem;
         padding-left: 3rem;

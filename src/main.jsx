@@ -6,6 +6,7 @@ import {createBrowserRouter,RouterProvider} from "react-router-dom";
 import { Provider } from 'react-redux'
 import {store} from "./store/store.js";
 import {Persnalinfo,Education,Professional,Department,Login,Questions,Status} from './pages/index.js'
+import Showresume from './pages/Showresume.jsx'
 const router = createBrowserRouter([
     {
         path: "/ats",
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
     {
         path:'/' ,
         element: <Login/>
+    },
+    {
+        path:'/show/:token' ,
+        element: <Showresume/>
     }
 ]);
 

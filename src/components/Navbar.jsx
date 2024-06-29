@@ -1,23 +1,20 @@
 import * as React from 'react';
 import {
-    AppBar, Avatar,
+    AppBar,
     Box,
     Button,
-    Divider,
-    Drawer,
+
     IconButton,
-    List,
-    ListItem,
-    ListItemButton,
+
     Toolbar,
     Typography
 } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
-import {useState} from "react";
-import {Menu, Logout} from '@mui/icons-material'
-import {Link, useNavigate} from 'react-router-dom'
+
+import {Logout} from '@mui/icons-material'
+import {useNavigate} from 'react-router-dom'
 import {useSelector} from "react-redux";
-import {userselector,loadingSelector,} from "../slices/userSlice.js";
+import {userselector, loadingSelector,} from "../slices/userSlice.js";
 
 const Navbar = () => {
     const user = useSelector(userselector)
@@ -30,7 +27,6 @@ const Navbar = () => {
         <>
 
 
-
             <Box sx={{flexGrow: 1, direction: 'rtl'}}>
                 <AppBar position="fixed" sx={{
                     '&.MuiAppBar-root': {
@@ -39,21 +35,26 @@ const Navbar = () => {
 
                     }
                 }}>
-                    <Toolbar sx={{ justifyContent:'center'}}>
+                    <Toolbar sx={{justifyContent: 'center'}}>
                         <IconButton
+                            onClick={() => {
+                                localStorage.clear()
+                                nav('/')
+
+                            }}
                             color="black"
                             aria-label="open drawer"
                             edge="start"
                             className='w100'
 
-                            sx={{ml: 1, display: {md: 'none'} }}
+                            sx={{ml: 1, display: {md: 'none'}}}
 
                         >
 
                             <img src="/assets/images/logo.png" alt="logo" style={{borderRadius: '50%'}} width={80}
                             />
-                            <Button onClick={() => nav('/')} className='underline yekan-regular clrblack'
-                                    color="primary" sx={{mr:'auto'}}>
+                            <Button className='underline yekan-regular clrblack'
+                                    color="primary" sx={{mr: 'auto'}}>
 
 
                                 خروج
@@ -63,28 +64,25 @@ const Navbar = () => {
 
                         <Grid container sx={{width: '100%', display: {xs: 'none', md: 'flex'},}}>
 
-                        <Grid xs={2} sx={{display: 'flex', justifyContent: 'center'}}>
+                            <Grid xs={2} sx={{display: 'flex', justifyContent: 'center'}}>
 
                                 <img src="/assets/images/logo.png" alt="logo" style={{borderRadius: '50%'}} width={100}
                                 />
                             </Grid>
 
 
-                            <Grid xs={5} sx={{display: 'flex' , alignItems:'center'}}>
-
+                            <Grid xs={5} sx={{display: 'flex', alignItems: 'center'}}>
 
 
                                 <Typography component='p' className='yekan-regular clrtwotext'>
                                     {
 
-                                        loading===false ? user.user.name ? user.user.name : user.user.phone  : 'کارجو'
+                                        loading === false ? user.user.name ? user.user.name : user.user.phone : 'کارجو'
                                     }
                                     {' '}
                                     عزیز به سیستم رهگیری استخدام افق ایرانیان خوش آمدید.
 
                                 </Typography>
-
-
 
 
                             </Grid>

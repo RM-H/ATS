@@ -19,3 +19,7 @@ export {default as Phd} from './professional/Phd.jsx'
 export {default as Questionitem} from './questions/Skillquestionitem.jsx'
 
 
+
+// ---------------------personal----------------------//
+export {default as PersonalInfoForm} from './PersonalInfoForm.jsx'
+
