@@ -50,7 +50,7 @@ const Login = () => {
             let resp = await verifySmsCode(form)
 
 
-          if (resp.data.code===1){
+          if (resp.data.code==1){
               const hashed =CryptoJS.AES.encrypt(JSON.stringify(resp.data.user.token),'ats' , toString())
               localStorage.setItem('user', hashed)
 

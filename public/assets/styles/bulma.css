@@ -4490,18 +4490,18 @@ div.icon-text {
   width: 128px;
 }
 
-.loader {
-  animation: spinAround 500ms infinite linear;
-  border: 2px solid var(--bulma-border);
-  border-radius: var(--bulma-radius-rounded);
-  border-right-color: transparent;
-  border-top-color: transparent;
-  content: "";
-  display: block;
-  height: 1em;
-  position: relative;
-  width: 1em;
-}
+/*.loader {*/
+/*  animation: spinAround 500ms infinite linear;*/
+/*  border: 2px solid var(--bulma-border);*/
+/*  border-radius: var(--bulma-radius-rounded);*/
+/*  border-right-color: transparent;*/
+/*  border-top-color: transparent;*/
+/*  content: "";*/
+/*  display: block;*/
+/*  height: 1em;*/
+/*  position: relative;*/
+/*  width: 1em;*/
+/*}*/
 
 .notification {
   --bulma-notification-h: var(--bulma-scheme-h);
