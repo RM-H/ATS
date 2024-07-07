@@ -17,9 +17,6 @@
 }
 
 
-.columns {
-    margin: 0;
-}
 
 
 @page {
@@ -40,6 +37,11 @@
 /*-------------------------*/
 /*         general         */
 /*-------------------------*/
+
+.columns {
+    margin: 0;
+}
+
 body {
     margin: 0;
 }
@@ -73,6 +75,10 @@ body {
 
 .clrfour {
     background-color: #E1C886;
+}
+
+.clrfourtext {
+    color: #E1C886;
 }
 
 .clrfive {
