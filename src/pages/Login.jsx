@@ -120,7 +120,7 @@ const Login = () => {
 
 
         } else {
-            toast.warning('لطفا ابتدا وارد سیستم شوید.')
+
             nav('/')
         }
 

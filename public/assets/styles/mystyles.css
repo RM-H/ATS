@@ -17,8 +17,6 @@
 }
 
 
-
-
 @page {
     size: A4 ;
     margin: 10mm;
@@ -161,6 +159,11 @@ body {
 /*-------------------------*/
 .shadowone {
     box-shadow: 0.3rem 0.3rem 0.6rem 0px rgba(0, 0, 0, 0.5) !important;
+
+}
+
+.shadowtwo {
+    box-shadow: 0.3rem 0.3rem 0.6rem 0px rgba(255, 255, 255, 0.5) !important;
 
 }
 
@@ -343,3 +346,53 @@ body {
 }
 
 
+/*not found*/
+.big {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    position: relative;
+    height: 100dvh;
+    width: 100dvw;
+    background-color: #14161A;
+}
+
+.boxd {
+
+    width: 20px;
+    height: 20px;
+
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+}
+
+.boxd:hover {
+    animation: shade 0.5s forwards;
+}
+
+.boxd:not(hover) {
+    animation: shadeout 0.5s forwards;
+}
+
+@keyframes shade {
+    from {
+        background-color: #14161A;
+    }
+    to {
+        background-color: #1B95A2;
+    }
+}
+
+@keyframes shadeout {
+    from {
+        background-color: #1B95A2;
+    }
+    to {
+        background-color: #14161A;
+    }
+}
+
+.out-line {
+    outline: 0.5px solid #00FF00;
+}

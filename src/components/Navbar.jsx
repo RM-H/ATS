@@ -38,6 +38,7 @@ const Navbar = () => {
                     <Toolbar sx={{justifyContent: 'center'}}>
                         <IconButton
                             onClick={() => {
+                                console.log('clear')
                                 localStorage.clear()
                                 nav('/')
 
@@ -90,7 +91,10 @@ const Navbar = () => {
 
                             <Grid xs={5} sx={{display: 'flex', justifyContent: 'end'}}>
 
-                                <Button onClick={() => nav('/')} className='underline yekan-regular clrblack'
+                                <Button onClick={() => {
+                                    localStorage.clear()
+                                    nav('/')
+                                }} className='underline yekan-regular clrblack'
                                         color="primary">
 
 

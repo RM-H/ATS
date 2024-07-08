@@ -38,7 +38,7 @@ const Mainlayout = () => {
                     } else if (response.data.education1 !== false || response.data.education2 !== false || response.data.education3 !== false || response.data.education4 !== false) {
                         dispatch(setstep(3))
 
-                    } else if (response.data.user !==false) {
+                    } else if (response.data.user.name !=null) {
                         dispatch(setstep(2))
                     } else if (response.data.departemant) {
                         dispatch(setstep(1))
