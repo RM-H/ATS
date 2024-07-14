@@ -27,42 +27,42 @@ const Showresume = () => {
     const [data, setData] = useState(false)
 
 
-    // checking to see if user had already logged in before
-    useEffect(() => {
+        // checking to see if user had already logged in before
+        useEffect(() => {
 
 
-        if (token) {
+            if (token) {
 
 
-            const getuser = async () => {
+                const getuser = async () => {
 
 
-                const formdata = new FormData()
-                formdata.append('token', token)
-                const response = await getUserinfo(formdata)
-                if (response.data.code == 1) {
-                    console.log(response.data)
-                    document.title = `روزمه ${response.data.user.name} ${response.data.user.family}`
-                    setData(response.data)
+                    const formdata = new FormData()
+                    formdata.append('token', token)
+                    const response = await getUserinfo(formdata)
+                    if (response.data.code == 1) {
+                        console.log(response.data)
+                        document.title = `روزمه ${response.data.user.name} ${response.data.user.family}`
+                        setData(response.data)
 
 
-                } else {
+                    } else {
 
 
-                    toast.warning(response.data.error)
-                    nav('/')
+                        toast.warning(response.data.error)
+                        nav('/')
+                    }
                 }
+                getuser().then()
+
+
+            } else {
+                toast.warning('توکن یافت نشد')
+                nav('/')
             }
-            getuser().then()
 
 
-        } else {
-            toast.warning('توکن یافت نشد')
-            nav('/')
-        }
-
-
-    }, []);
+        }, []);
 
     let userdepartment
     if (data !== false) {
@@ -75,7 +75,7 @@ const Showresume = () => {
 
     let content
     if (data !== false) {
-        content = <div className='columns is-multiline   yekan-regular pringpage'>
+        content = <div className='columns is-multiline   yekan-regular pringpage '>
             <div className='column is-12 '>
                 <Divider sx={{
                     '&.MuiDivider-root::before': {
@@ -485,7 +485,11 @@ const Showresume = () => {
 
         </div>
     } else {
-        content = <Spinner/>
+        content =
+            <div className='is-flex is-justify-content-center is-align-items-center' style={{height: '100dvh'}}>
+                <Spinner/>
+            </div>
+
     }
 
 

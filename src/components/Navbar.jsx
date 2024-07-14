@@ -27,7 +27,7 @@ const Navbar = () => {
         <>
 
 
-            <Box sx={{flexGrow: 1, direction: 'rtl'}}>
+            <Box  sx={{flexGrow: 1, direction: 'rtl'}}>
                 <AppBar position="fixed" sx={{
                     '&.MuiAppBar-root': {
                         backgroundColor: 'rgba(255,255,255,0.36)',
@@ -52,7 +52,7 @@ const Navbar = () => {
 
                         >
 
-                            <img src="/assets/images/logo.png" alt="logo" style={{borderRadius: '50%'}} width={80}
+                            <img  src="/assets/images/logo.png" alt="logo" style={{borderRadius: '50%'}} width={80}
                             />
                             <Button className='underline yekan-regular clrblack'
                                     color="primary" sx={{mr: 'auto'}}>

@@ -70,6 +70,11 @@ import {ToastContainer} from "react-toastify";
 const theme = createTheme({
     direction: 'rtl',
 });
+
+if ('serviceWorker' in navigator){
+
+    navigator.serviceWorker.register('sw.js', {scope:'/'}).then(()=>console.log('Service worker has been registered')).catch((e)=>console.log(e));
+}
 ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={store}>
 

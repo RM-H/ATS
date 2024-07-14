@@ -291,11 +291,11 @@ body {
 .loader {
     content: "";
 
-    width: 0.6rem !important;
+    width: 0.9rem !important;
 
-    height: 0.6rem !important;
+    height: 0.9rem !important;
     border-radius: 50%;
-    background: #36B786;
+    background: #E1C886;
     position: relative;
 }
 
@@ -303,8 +303,8 @@ body {
 .loader:after {
     content: "";
     position: absolute;
-    width: 0.6rem;
-    height: 0.6rem;
+    width: 0.9rem;
+    height: 0.9rem;
     border-radius: 50%;
     inset: 0;
     background: #36B786;
@@ -396,3 +396,7 @@ body {
 .out-line {
     outline: 0.5px solid #00FF00;
 }
+
+
+
+

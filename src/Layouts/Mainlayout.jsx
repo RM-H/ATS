@@ -16,6 +16,11 @@ const Mainlayout = () => {
 
     // checking to see if user had already logged in before
     useEffect(() => {
+
+
+
+
+
         let user = localStorage.getItem('user')
 
         if (user) {
