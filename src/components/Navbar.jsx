@@ -23,6 +23,9 @@ const Navbar = () => {
 
     const nav = useNavigate()
 
+
+
+
     return (
         <>
 
@@ -61,6 +64,9 @@ const Navbar = () => {
                                 خروج
                                 <Logout/>
                             </Button>
+
+
+
                         </IconButton>
 
                         <Grid container sx={{width: '100%', display: {xs: 'none', md: 'flex'},}}>
@@ -99,6 +105,14 @@ const Navbar = () => {
 
 
                                     خروج
+                                    <Logout/>
+                                </Button>
+
+                                <Button id='pwa' className='underline yekan-regular clrblack'
+                                        color="primary" sx={{mr: 'auto'}}>
+
+
+                                    install
                                     <Logout/>
                                 </Button>
                             </Grid>

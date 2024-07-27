@@ -71,10 +71,48 @@ const theme = createTheme({
     direction: 'rtl',
 });
 
-if ('serviceWorker' in navigator){
+// if ('serviceWorker' in navigator){
+//
+//     navigator.serviceWorker.register('sw.js', {scope:'/'}).then(()=>console.log('Service worker has been registered')).catch((e)=>console.log(e));
+// }
 
-    navigator.serviceWorker.register('sw.js', {scope:'/'}).then(()=>console.log('Service worker has been registered')).catch((e)=>console.log(e));
-}
+
+
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (event) => {
+    // Prevent the default prompt
+    event.preventDefault();
+    // Save the event so it can be triggered later
+    deferredPrompt = event;
+    // Show the install button
+    const installButton = document.getElementById('pwa');
+    installButton.style.display = 'block';
+
+    installButton.addEventListener('click', async () => {
+        // Hide the install button
+        installButton.style.display = 'none';
+        // Show the install prompt
+        deferredPrompt.prompt();
+        // Wait for the user to respond to the prompt
+        const { outcome } = await deferredPrompt.userChoice;
+        // Reset the deferred prompt variable
+        deferredPrompt = null;
+
+        // Optionally, log the outcome for analytics
+        console.log(`User response to the install prompt: ${outcome}`);
+    });
+});
+
+window.addEventListener('appinstalled', (event) => {
+    // Log install event for analytics
+    console.log('PWA was installed', event);
+});
+
+
+
+
+
 ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={store}>
 
@@ -93,3 +131,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
     ,
 )
+
