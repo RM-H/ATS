@@ -13,7 +13,13 @@ export default defineConfig({
             workbox: {
                 globPatterns: ['**/*.{js,css,html,ico,png,jpg,svg,woff2}']
             },
-            strategies: 'generateSW',
+            strategies: 'injectManifest',
+            srcDir: 'public',
+            filename: 'sw.js',
+
+            injectManifest:{
+                injectionPoint:undefined
+            }
 
 
         })
