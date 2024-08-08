@@ -151,9 +151,11 @@ import {  getToken ,onMessage} from "firebase/messaging";
 // subsequent calls to getToken will return from cache.
 
 getToken(messaging, { vapidKey: 'BP4M-GpYRuamyjRa2fB-YBu-33I-7baG8ijF7fwYAC3mj4IENSZBOJIhIm7Ci-jXP9ojKCRJIFACZyP0ICt4zwo' }).then((currentToken) => {
+    console.log('getting token')
     if (currentToken) {
         // Send the token to your server and update the UI if necessary
         console.log(currentToken)
+        document.getElementById('test').innerHTML=currentToken;
         // ...
     } else {
         // Show permission request UI
